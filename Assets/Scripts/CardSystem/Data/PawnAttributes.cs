@@ -43,5 +43,14 @@ namespace CardSystem.Data
             set => _bonus = Mathf.Clamp(value, 0, 100);
             get => _bonus;
         }
+        
+        private float _sleepingHours;
+
+        public float SleepingHours
+        {
+            set => _sleepingHours = Mathf.Clamp(value, 0, 14);
+            get => _sleepingHours;
+        }
+        
     }
 }

@@ -2,12 +2,24 @@ using System;
 using System.Collections.Generic;
 using CardSystem.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CardSystem.CardEffect.Effect
 {
     [CreateAssetMenu(fileName = "AttributeChangeEffect", menuName = "Scriptable Objects/Effect/Attribute Change Effect")]
     public class AttributeChangeEffect : BaseEffect
     {
+        [Serializable]
+        public struct LuckyAttributeChange
+        {
+            public float Possibility;
+            public AttributeChangeConfig AttributeOperationIfLucky;
+            public AttributeChangeConfig AttributeOperationElse;
+        }
+        
+        public List<LuckyAttributeChange> LuckyAttributeChangeConfigs;
+        
+#region Standard Attribute Logic
         [Serializable]
         public enum Attribute
         {
@@ -30,18 +42,31 @@ namespace CardSystem.CardEffect.Effect
         [Serializable]
         public struct AttributeChangeConfig
         {
-            public Attribute attributeToChange; 
+            public Attribute attributeToOperate; 
             public CalculationType operationToDo;
             public float value;
         }
 
         public List<AttributeChangeConfig> attributeChangeConfigs;
-    
+        
         public override void ApplyEffect()
         {
+            foreach (var LuckyAttributeChange in LuckyAttributeChangeConfigs)
+            {
+
+                if (UnityEngine.Random.value <= LuckyAttributeChange.Possibility)
+                {
+                    attributeChangeConfigs.Add(LuckyAttributeChange.AttributeOperationIfLucky);
+                }
+                else
+                {
+                    attributeChangeConfigs.Add(LuckyAttributeChange.AttributeOperationElse);
+                }
+            }
+            
             foreach (var changeConfig in attributeChangeConfigs)
             {
-                var valueToOperate = changeConfig.attributeToChange switch
+                var valueToOperate = changeConfig.attributeToOperate switch
                 {
                     Attribute.Productivity => GameContext.Attributes.Productivity,
                     Attribute.Stress => GameContext.Attributes.Stress,
@@ -51,7 +76,7 @@ namespace CardSystem.CardEffect.Effect
                     _ => throw new ArgumentOutOfRangeException()
                 };
 
-                if (changeConfig.attributeToChange is Attribute.Bonus or not Attribute.Productivity)
+                if (changeConfig.attributeToOperate is Attribute.Bonus or not Attribute.Productivity)
                 {
                     switch (changeConfig.operationToDo)
                     {
@@ -99,7 +124,7 @@ namespace CardSystem.CardEffect.Effect
                     }
                 }
 
-                switch (changeConfig.attributeToChange)
+                switch (changeConfig.attributeToOperate)
                 {
                     case Attribute.Productivity:
                         GameContext.Attributes.Productivity = valueToOperate;
@@ -125,7 +150,7 @@ namespace CardSystem.CardEffect.Effect
         {
             foreach (var changeConfig in attributeChangeConfigs)
             {
-                if (changeConfig.attributeToChange == Attribute.Bonus)
+                if (changeConfig.attributeToOperate == Attribute.Bonus)
                 {
                     switch (changeConfig.operationToDo)
                     {
@@ -151,5 +176,7 @@ namespace CardSystem.CardEffect.Effect
                 GameContext.Attributes.Bonus = Mathf.Max(GameContext.Attributes.Bonus, 0);
             }
         }
+#endregion
+
     }
 }

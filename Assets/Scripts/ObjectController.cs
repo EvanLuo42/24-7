@@ -1,5 +1,6 @@
 using System;
 using CardSystem.CardEffect;
+using CardSystem.Data;
 using DG.Tweening;
 using UnityEngine;
 
@@ -24,25 +25,33 @@ public class ObjectController : MonoBehaviour
 
     private void OnMouseDown()
     {
+
         SfxManager.Instance.Play("Click Object");
-        if (FindFirstObjectByType<GameManager>().CurrentPhase == GamePhase.Plan)
+        // 何尝不算一种 NTR
+        switch (GameContext.currentPhase)
         {
-            transform.DOKill();
-            _meshRenderer.material
-                .DOFade(0f, 0.5f)
-                .OnComplete(() =>
-                {
-                    var clipboard = FindFirstObjectByType<ClipboardManager>();
+            case LoopManager.LoopPhase.Dawn:
+                transform.DOKill();
+                _meshRenderer.material
+                    .DOFade(0f, 0.5f)
+                    .OnComplete(() =>
+                    {
+                        var clipboard = FindFirstObjectByType<ClipboardManager>();
                 
-                    clipboard.AddCard(dayCardEffect);
+                        clipboard.AddCard(dayCardEffect);
                 
-                    Destroy(gameObject);
-                });
-            return;
+                        Destroy(gameObject);
+                    });
+                break;
+            case LoopManager.LoopPhase.Day:
+                
+                break;
+            case LoopManager.LoopPhase.Night:
+                _isDragging = true;
+                _dragDepth = Vector3.Distance(Camera.main!.transform.position, transform.position);
+                _dragOffset = transform.position - GetMouseWorldPosition();
+                break;
         }
-        _isDragging = true;
-        _dragDepth = Vector3.Distance(Camera.main!.transform.position, transform.position);
-        _dragOffset = transform.position - GetMouseWorldPosition();
     }
     
     private void OnMouseDrag()
@@ -62,6 +71,8 @@ public class ObjectController : MonoBehaviour
         if (trashBin && IsOverlapping(trashBin))
         {
             nightCardEffect?.ApplyEffect();
+            // hash coded,只为模拟使用。应该使用CE，直接写到 nightCardEffect里，每个牌不一样
+            GameContext.Attributes.SleepingHours -= 2;
             Destroy(gameObject);
         }
         else

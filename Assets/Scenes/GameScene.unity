@@ -249,29 +249,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 223229583}
-  - component: {fileID: 223229582}
+  - component: {fileID: 223229584}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: LoopManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &223229582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223229581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 796d32eca3f1044debf6100294e8608b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initEffect: {fileID: 11400000, guid: 403210dbb871f324f8918376db3d5366, type: 2}
-  clipboardManager: {fileID: 1241554830}
-  tableManager: {fileID: 427492004}
 --- !u!4 &223229583
 Transform:
   m_ObjectHideFlags: 0
@@ -287,6 +272,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &223229584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223229581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0dfd7c26d3540b45956e078c925a677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initEffect: {fileID: 11400000, guid: 403210dbb871f324f8918376db3d5366, type: 2}
+  clipboardManager: {fileID: 1241554830}
+  tableManager: {fileID: 427492004}
 --- !u!1 &261037019
 GameObject:
   m_ObjectHideFlags: 0

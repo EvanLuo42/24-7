@@ -31,31 +31,37 @@ public class GameManager : MonoBehaviour
         switch (CurrentPhase)
         {
             case GamePhase.Start:
+                Debug.Log("Start");
                 initEffect.ApplyEffect();
                 tableManager.GenerateObjects(3);
                 Continue();
                 break;
             case GamePhase.Plan:
+                Debug.Log("Plan");
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     Continue();
                 }
                 break;
             case GamePhase.Day:
+                Debug.Log("Day");
                 StartCoroutine(Execute());
                 CurrentPhase = GamePhase.Running;
                 break;
             case GamePhase.Night:
+                Debug.Log("Night");
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     Continue();
                 }
                 break;
             case GamePhase.Settle:
+                Debug.Log("Settle");
                 tableManager.GenerateObjects(Random.Range(1, 3));
                 Continue();
                 break;
             case GamePhase.Running:
+                Debug.Log("Settle");
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
