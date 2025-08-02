@@ -23,7 +23,7 @@ public class ClipboardManager : MonoBehaviour
             Color.cyan,
             Color.black
         };
-        for (var i = 0; i < 5; i++)
+        for (var i = 0; i < 1; i++)
         {
             var slot = Instantiate(cardSlotPrefab, transform, false).transform;
             _cardSlots.Add(slot);
