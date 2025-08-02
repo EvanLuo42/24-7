@@ -1,4 +1,4 @@
-using System;
+using CardSystem;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,6 +16,8 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private RectTransform _rect;
     private ClipboardManager _manager;
     [HideInInspector] public Transform slot;
+
+    public bool day;
 
     private void Start()
     {
@@ -61,7 +63,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         );
         _offset = _rect.anchoredPosition - localPoint;
         transform.SetAsLastSibling();
-        _manager.NotifyBeginDrag(this);
+        _manager.NotifyBeginDrag();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -87,5 +89,10 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public void SnapToSlot()
     {
         transform.DOLocalMove(Vector3.zero, animTime).SetEase(Ease.OutQuad);
+    }
+
+    public void Remove()
+    {
+        _manager.NotifyRemove(GetComponent<ApplyCard>());
     }
 }

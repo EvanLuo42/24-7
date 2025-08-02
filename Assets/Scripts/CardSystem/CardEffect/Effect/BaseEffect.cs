@@ -1,7 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BaseEffect", menuName = "Scriptable Objects/Effect/BaseEffect")]
-public abstract class BaseEffect : ScriptableObject
+namespace CardSystem.CardEffect.Effect
 {
-    public abstract void ApplyEffect();
+    [CreateAssetMenu(fileName = "BaseEffect", menuName = "Scriptable Objects/Effect/BaseEffect")]
+    public abstract class BaseEffect : ScriptableObject
+    {
+        public abstract void ApplyEffect();
+        public abstract void DeApplyEffect();
+    }
 }

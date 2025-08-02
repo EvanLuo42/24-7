@@ -1,16 +1,20 @@
 using System.Collections.Generic;
+using CardSystem.CardEffect.Effect;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CardEffect", menuName = "Scriptable Objects/CardEffect")]
-public class CardEffect : ScriptableObject
+namespace CardSystem.CardEffect
 {
-    public List<BaseEffect> CardEffectConfig;
-
-    public void ApplyEffect()
+    [CreateAssetMenu(fileName = "CardEffect", menuName = "Scriptable Objects/CardEffect")]
+    public class CardEffect : ScriptableObject
     {
-        foreach (var EffectConfig in CardEffectConfig)
+        public List<BaseEffect> cardEffectConfig;
+
+        public void ApplyEffect()
         {
-            EffectConfig.ApplyEffect();
+            foreach (var effectConfig in cardEffectConfig)
+            {
+                effectConfig.ApplyEffect();
+            }
         }
     }
 }

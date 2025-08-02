@@ -1,6 +1,7 @@
-using UnityEngine;
-
-public static class GameContext
+namespace CardSystem.Data
 {
-    public static PawnAttributes Attributes;
+    public static class GameContext
+    {
+        public static readonly PawnAttributes Attributes = new();
+    }
 }

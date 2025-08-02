@@ -1,49 +1,105 @@
+using System;
+using System.Collections;
+using CardSystem;
+using CardSystem.CardEffect.Effect;
+using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
+
+public enum GamePhase
+{
+    Start,
+    Plan,
+    Day,
+    Night,
+    Settle
+}
 
 public class GameManager : MonoBehaviour
 {
-    public PawnAttributes MyAttributeSet;
-    public BaseEffect CE_Initialize;
-    public ClipboardManager ClipboardManager;
-    public ApplyCardInterface CardTest1;
-    void Start()
-    {
-        // 向静态方法库分配静态变量
-        GameContext.Attributes = MyAttributeSet;
-        // 应用初始化效果
-        CE_Initialize.ApplyEffect();
-    }
+    public BaseEffect initEffect;
+    public ClipboardManager clipboardManager;
+    public TableManager tableManager;
 
-    private bool DoOnce = true;
-    // Update is called once per frame
-    void Update()
+    private AudioSource _audioSource;
+
+    public GamePhase CurrentPhase { get; private set; } = GamePhase.Start;
+
+    private void Update()
     {
-        Debug.Log( "RateOfProgress:" + MyAttributeSet.GetRateOfProgress());
-        Debug.Log( "Stamina:" + MyAttributeSet.GetStamina());
-        Debug.Log( "Pressure:" + MyAttributeSet.GetPressure());
-        
-        if (DoOnce == false)return;
-        if (Input.GetKey(KeyCode.Space))
+        switch (CurrentPhase)
         {
-            Execute();
-            DoOnce = false;
+            case GamePhase.Start:
+                initEffect.ApplyEffect();
+                tableManager.GenerateObjects(3);
+                Continue();
+                break;
+            case GamePhase.Plan:
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Continue();
+                }
+                break;
+            case GamePhase.Day:
+                StartCoroutine(Execute());
+                Continue();
+                break;
+            case GamePhase.Night:
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Continue();
+                }
+                break;
+            case GamePhase.Settle:
+                tableManager.GenerateObjects(Random.Range(1, 3));
+                Continue();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
-    void Execute()
+    private void Continue()
     {
-        // Debug.Log("CardSlot list:"+ClipboardManager.GetCardSlots()==null);
-        
-        foreach (var CardSlot in ClipboardManager.GetCardSlots())
+        switch (CurrentPhase)
         {
-            // ApplyCardInterface ACI = CardSlot.GetComponentInChildren<ApplyCardInterface>();
-            // if (ACI)
-            // {
-            //     print(ACI.name);
-            //     ACI.Apply();
-            // }
+            case GamePhase.Start:
+                CurrentPhase = GamePhase.Plan;
+                return;
+            case GamePhase.Plan:
+                CurrentPhase = GamePhase.Day;
+                return;
+            case GamePhase.Day:
+                CurrentPhase = GamePhase.Night;
+                break;
+            case GamePhase.Night:
+                CurrentPhase = GamePhase.Settle;
+                break;
+            case GamePhase.Settle:
+                CurrentPhase = GamePhase.Plan;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
-        CardTest1.Apply();
-    }   
+    }
+
+    private IEnumerator Execute()
+    {
+        foreach (var slot in clipboardManager.CardSlots)
+        {
+            var card = slot.GetComponentInChildren<ApplyCard>();
+            if (!card) continue;
+            var rect = card.GetComponent<RectTransform>();
+            var originalPos = rect.localPosition;
+            yield return rect.DOLocalMoveY(originalPos.y + 50f, 0.2f)
+                .SetEase(Ease.OutQuad)
+                .WaitForCompletion();
+            card.Apply();
+            yield return new WaitForSeconds(0.5f);
+            yield return rect.DOLocalMove(originalPos, 0.2f)
+                .SetEase(Ease.InQuad)
+                .WaitForCompletion();
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
 }

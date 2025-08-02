@@ -1,45 +1,32 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using CardSystem;
+using CardSystem.CardEffect;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ClipboardManager : MonoBehaviour
 {
-    private readonly List<Transform> _cardSlots = new();
-    
+    public List<Transform> CardSlots { get; } = new();
+
     public GameObject cardSlotPrefab;
-    public GameObject cardPrefab;
-    private Card draggingCard;
+    public Cards cardsSo;
+    
     [HideInInspector] public bool dragging;
     
-    private int lastBestIndex = -1;
+    private int _lastBestIndex = -1;
 
     private void Start()
     {
-        var colors = new List<Color>
-        {
-            Color.blue,
-            Color.magenta,
-            Color.green,
-            Color.cyan,
-            Color.black
-        };
-        for (var i = 0; i < 1; i++)
+        for (var i = 0; i < 12; i++)
         {
             var slot = Instantiate(cardSlotPrefab, transform, false).transform;
-            _cardSlots.Add(slot);
-            var card = Instantiate(cardPrefab, slot.transform, false);
-            card.GetComponent<Image>().color = colors[i];
+            CardSlots.Add(slot);
         }
     }
-    
-    public List<Transform> GetCardSlots() => _cardSlots;
 
-    public void NotifyBeginDrag(Card card)
+    public void NotifyBeginDrag()
     {
-        draggingCard = card;
         dragging = true;
     }
     
@@ -48,31 +35,31 @@ public class ClipboardManager : MonoBehaviour
         var minDist = float.MaxValue;
         var bestIndex = -1;
 
-        for (var i = 0; i < _cardSlots.Count; i++)
+        for (var i = 0; i < CardSlots.Count; i++)
         {
-            var dist = Vector2.Distance(card.transform.position, _cardSlots[i].position);
+            var dist = Vector2.Distance(card.transform.position, CardSlots[i].position);
             if (!(dist < minDist)) continue;
             minDist = dist;
             bestIndex = i;
         }
 
-        if (bestIndex < 0 || _cardSlots[bestIndex] == card.slot) return;
+        if (bestIndex < 0 || CardSlots[bestIndex] == card.slot) return;
 
-        lastBestIndex = bestIndex;
+        _lastBestIndex = bestIndex;
 
-        foreach (var trans in _cardSlots.Where(trans => trans.childCount > 0 && trans.GetChild(0) != card.transform))
+        foreach (var trans in CardSlots.Where(trans => trans.childCount > 0 && trans.GetChild(0) != card.transform))
         {
             trans.GetChild(0).DOLocalMoveX(0, 0.2f);
         }
         
-        var offset = Vector3.Distance(_cardSlots[1].position, _cardSlots[0].position) * 0.4f;
+        var offset = Vector3.Distance(CardSlots[1].position, CardSlots[0].position) * 0.4f;
 
-        for (var i = 0; i < _cardSlots.Count; i++)
+        for (var i = 0; i < CardSlots.Count; i++)
         {
-            if (_cardSlots[i] == card.slot || _cardSlots[i].childCount == 0)
+            if (CardSlots[i] == card.slot || CardSlots[i].childCount == 0)
                 continue;
 
-            var otherCard = _cardSlots[i].GetChild(0);
+            var otherCard = CardSlots[i].GetChild(0);
             if (i < bestIndex)
                 otherCard.DOLocalMoveX(-offset, 0.2f);
             else if (i >= bestIndex)
@@ -82,37 +69,85 @@ public class ClipboardManager : MonoBehaviour
 
     public void NotifyEndDrag(Card card)
     {
-        draggingCard = null;
         dragging = false;
         
-        foreach (var slot in _cardSlots.Where(slot => slot.childCount > 0))
+        foreach (var slot in CardSlots.Where(slot => slot.childCount > 0))
         {
             slot.GetChild(0).DOLocalMoveX(0, 0.2f);
         }
         
-        List<Card> cards = new();
-        foreach (var slot in _cardSlots)
+        var cards = CardSlots
+            .Select(slot => slot.GetComponentInChildren<Card>())
+            .Where(c => c)
+            .ToList();
+        
+        var insertIndex = card.slot ? card.slot.GetSiblingIndex() : 0;
+        
+        if (_lastBestIndex >= 0 && _lastBestIndex <= cards.Count)
         {
-            if (slot.childCount <= 0) continue;
-            var c = slot.GetChild(0).GetComponent<Card>();
-            if (c != card)
-                cards.Add(c);
+            insertIndex = Mathf.Clamp(_lastBestIndex, 0, cards.Count);
         }
         
-        if (lastBestIndex >= 0 && lastBestIndex < _cardSlots.Count)
-            cards.Insert(lastBestIndex, card);
+        if (_lastBestIndex >= 0 && _lastBestIndex < CardSlots.Count)
+            cards.Insert(insertIndex, card);
         else
             cards.Insert(card.slot.GetSiblingIndex(), card);
         
-        for (var i = 0; i < _cardSlots.Count && i < cards.Count; i++)
+        for (var i = 0; i < CardSlots.Count && i < cards.Count; i++)
         {
-            var targetSlot = _cardSlots[i];
+            var targetSlot = CardSlots[i];
             var c = cards[i];
             c.transform.SetParent(targetSlot, true);
             c.slot = targetSlot;
             c.SnapToSlot();
         }
 
-        lastBestIndex = -1;
+        _lastBestIndex = -1;
+    }
+
+    public void NotifyRemove(ApplyCard applyCard)
+    {
+        foreach (var config in applyCard.cardEffect.cardEffectConfig)
+        {
+            config.DeApplyEffect();
+        }
+        
+        var cards = CardSlots
+            .Select(slot => slot.GetComponentInChildren<Card>())
+            .Where(c => c)
+            .ToList();
+        
+        for (var i = 0; i < cards.Count; i++)
+        {
+            var targetSlot = CardSlots[i];
+            var c = cards[i];
+
+            c.transform.SetParent(targetSlot, true);
+            c.slot = targetSlot;
+            c.SnapToSlot();
+        }
+    }
+
+    public void AddRandomCard()
+    {
+        foreach (var slot in CardSlots.Where(slot => !slot.GetComponentInChildren<Card>()))
+        {
+            Instantiate(cardsSo.cardPrefabs[Random.Range(0, cardsSo.cardPrefabs.Count)], slot, false);
+        }
+    }
+
+    public void AddCard(CardEffect dayCardEffect)
+    {
+        foreach (var slot in CardSlots.Where(slot => !slot.GetComponentInChildren<Card>()))
+        {
+            foreach (var cardPrefab in cardsSo.cardPrefabs.Where(cardPrefab => cardPrefab.GetComponent<ApplyCard>().cardEffect == dayCardEffect))
+            {
+                var dayCard = Instantiate(cardPrefab, slot, false);
+                var dayLocalPos = dayCard.transform.localPosition;
+                dayCard.transform.localPosition = new Vector3(dayLocalPos.x, dayLocalPos.y - 30f, 0);
+                dayCard.transform.DOLocalMoveY(0, 0.3f);
+                return;
+            }
+        }
     }
 }

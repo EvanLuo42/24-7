@@ -1,47 +1,47 @@
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 
-[CreateAssetMenu(fileName = "PawnAttributes", menuName = "Scriptable Objects/PawnAttributes")]
-public class PawnAttributes : ScriptableObject
+namespace CardSystem.Data
 {
-    private float RateOfProgress;
-    private float Pressure;
-    private float Stamina;
-
-    public void SetRateOfProgress(float NewValue)
+    public class PawnAttributes
     {
-        RateOfProgress = NewValue;
-        RateOfProgress = Mathf.Clamp(RateOfProgress,0,100);
-        if (RateOfProgress == 100)
+        private float _productivity;
+    
+        public float Productivity
         {
-            Debug.Log("游戏胜利啦！");
-            // 游戏胜利
+            set => _productivity = Mathf.Clamp(value, 0, 100);
+            get => _productivity;
         }
-    }
 
-    public float GetRateOfProgress()
-    {
-        return RateOfProgress;
-    }
-    
-    public void SetPressure(float NewValue)
-    {
-        Pressure = NewValue;
-        Pressure = Mathf.Clamp(Pressure,0,100);
-    }
-    public float GetPressure()
-    {
-        return Pressure;
-    }
+        private float _stress;
 
-    public void SetStamina(float NewValue)
-    {
-        Stamina = NewValue;
-        Stamina = Mathf.Clamp(Stamina,0,100);
-    }
+        public float Stress
+        {
+            set => _stress = Mathf.Clamp(value, 0, 100);
+            get => _stress;
+        }
     
-    public float GetStamina()
-    {
-        return Stamina;
+        private float _energy;
+
+        public float Energy
+        {
+            set => _energy = Mathf.Clamp(value, 0, 100);
+            get => _energy;
+        }
+    
+        private float _cook;
+
+        public float Cook
+        {
+            set => _cook = Mathf.Clamp(value, 0, 100);
+            get => _cook;
+        }
+        
+        private float _bonus;
+
+        public float Bonus
+        {
+            set => _bonus = Mathf.Clamp(value, 0, 100);
+            get => _bonus;
+        }
     }
 }
