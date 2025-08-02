@@ -32,8 +32,9 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!_manager.dragging)
-            transform.DOScale(hoverScale, animTime);
+        if (_manager.dragging) return;
+        transform.DOScale(hoverScale, animTime);
+        SfxManager.Instance.Play("Hover Card");
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -51,6 +52,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             out var localPoint
         );
         _offset = transform.localPosition - (Vector3)localPoint;
+        SfxManager.Instance.Play("Click Card");
     }
 
     public void OnBeginDrag(PointerEventData eventData)

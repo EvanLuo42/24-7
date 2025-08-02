@@ -753,6 +753,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 427492005}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1112982877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1112982879}
+  - component: {fileID: 1112982878}
+  m_Layer: 0
+  m_Name: OSTManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1112982878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112982877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac9889bc08d36494a8fd4c8ff3a9d996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tracks:
+  - name: Daytime
+    clip: {fileID: 8300000, guid: b4bb55f3491a541e499b773751a6194f, type: 3}
+    volume: 50
+  - name: Nighttime
+    clip: {fileID: 8300000, guid: 94a97f779019d435d9268a79787916b8, type: 3}
+    volume: 50
+  - name: Planning
+    clip: {fileID: 8300000, guid: 821f692eb3ba54ababcbb27a618426c9, type: 3}
+    volume: 50
+  fadeDuration: 0.5
+--- !u!4 &1112982879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112982877}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5719528, y: 2.025244, z: 0.21528435}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1164126337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,6 +1229,68 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1648245488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1648245490}
+  - component: {fileID: 1648245489}
+  m_Layer: 0
+  m_Name: SFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1648245489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648245488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d686e77ee6ba24f728bb62ba91adfab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxList:
+  - name: Remove Card
+    clip: {fileID: 8300000, guid: 60da0caf1ac174a06ad345ba111d19be, type: 3}
+    volume: 50
+    randomPitch: 0
+  - name: Hover Card
+    clip: {fileID: 8300000, guid: 856b7dcc074d24d538716ca8653355e0, type: 3}
+    volume: 50
+    randomPitch: 0
+  - name: Click Card
+    clip: {fileID: 8300000, guid: 0167bb16f34b24534a1a78e72a49d647, type: 3}
+    volume: 50
+    randomPitch: 0
+  - name: Click Object
+    clip: {fileID: 8300000, guid: b93a714f06d4343ea994972125401c98, type: 3}
+    volume: 50
+    randomPitch: 0
+  poolSize: 10
+--- !u!4 &1648245490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648245488}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5719528, y: 2.025244, z: 0.21528435}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1697432761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,3 +1445,5 @@ SceneRoots:
   - {fileID: 48543152}
   - {fileID: 427492005}
   - {fileID: 1164126341}
+  - {fileID: 1648245490}
+  - {fileID: 1112982879}

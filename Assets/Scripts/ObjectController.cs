@@ -1,3 +1,4 @@
+using System;
 using CardSystem.CardEffect;
 using DG.Tweening;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class ObjectController : MonoBehaviour
 
     private void OnMouseDown()
     {
+        SfxManager.Instance.Play("Click Object");
         if (FindFirstObjectByType<GameManager>().CurrentPhase == GamePhase.Plan)
         {
             transform.DOKill();
@@ -66,6 +68,11 @@ public class ObjectController : MonoBehaviour
         {
             transform.DOMove(_originalPosition, 0.3f).SetEase(Ease.OutQuad);
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        SfxManager.Instance.Play("Hover Card");
     }
 
     private bool IsOverlapping(GameObject other)

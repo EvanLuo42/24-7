@@ -12,7 +12,8 @@ public enum GamePhase
     Plan,
     Day,
     Night,
-    Settle
+    Settle,
+    Running
 }
 
 public class GameManager : MonoBehaviour
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GamePhase.Day:
                 StartCoroutine(Execute());
-                Continue();
+                CurrentPhase = GamePhase.Running;
                 break;
             case GamePhase.Night:
                 if (Input.GetKeyDown(KeyCode.Space))
@@ -54,29 +55,35 @@ public class GameManager : MonoBehaviour
                 tableManager.GenerateObjects(Random.Range(1, 3));
                 Continue();
                 break;
+            case GamePhase.Running:
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
     }
 
-    private void Continue()
+    private void Continue(GamePhase phase = GamePhase.Start)
     {
         switch (CurrentPhase)
         {
             case GamePhase.Start:
                 CurrentPhase = GamePhase.Plan;
+                OstManager.Instance.Play("Planning");
                 return;
             case GamePhase.Plan:
                 CurrentPhase = GamePhase.Day;
+                OstManager.Instance.Play("Daytime");
                 return;
             case GamePhase.Day:
                 CurrentPhase = GamePhase.Night;
+                OstManager.Instance.Play("Nighttime");
                 break;
             case GamePhase.Night:
                 CurrentPhase = GamePhase.Settle;
                 break;
             case GamePhase.Settle:
                 CurrentPhase = GamePhase.Plan;
+                OstManager.Instance.Play("Planning");
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -95,7 +102,7 @@ public class GameManager : MonoBehaviour
                 .SetEase(Ease.OutQuad)
                 .WaitForCompletion();
             card.Apply();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
             var cardController = card.GetComponent<Card>();
             cardController.passed++;
             if (cardController.passed < cardController.duration)
@@ -106,12 +113,16 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                SfxManager.Instance.Play("Remove Card");
                 yield return rect.DOLocalMoveY(originalPos.y - 100f, 0.2f)
                     .SetEase(Ease.InQuad)
                     .OnComplete(() => cardController.Remove())
                     .WaitForCompletion();
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
+
+        OstManager.Instance.Play("Nighttime");
+        CurrentPhase = GamePhase.Night;
     }
 }
