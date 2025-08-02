@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,8 @@ public class ClipboardManager : MonoBehaviour
     public GameObject cardPrefab;
     private Card draggingCard;
     [HideInInspector] public bool dragging;
+    
+    private int lastBestIndex = -1;
 
     private void Start()
     {
@@ -39,62 +42,41 @@ public class ClipboardManager : MonoBehaviour
         draggingCard = card;
         dragging = true;
     }
-
-    [Obsolete("Obsolete")]
+    
     public void NotifyDragging(Card card)
     {
-        float minDist = float.MaxValue;
-        int bestIndex = -1;
+        var minDist = float.MaxValue;
+        var bestIndex = -1;
 
-        for (int i = 0; i < _cardSlots.Count; i++)
+        for (var i = 0; i < _cardSlots.Count; i++)
         {
-            float dist = Vector2.Distance(card.transform.position, _cardSlots[i].position);
-            if (dist < minDist)
-            {
-                minDist = dist;
-                bestIndex = i;
-            }
+            var dist = Vector2.Distance(card.transform.position, _cardSlots[i].position);
+            if (!(dist < minDist)) continue;
+            minDist = dist;
+            bestIndex = i;
         }
 
-        if (bestIndex >= 0 && _cardSlots[bestIndex] != card.slot)
+        if (bestIndex < 0 || _cardSlots[bestIndex] == card.slot) return;
+
+        lastBestIndex = bestIndex;
+
+        foreach (var trans in _cardSlots.Where(trans => trans.childCount > 0 && trans.GetChild(0) != card.transform))
         {
-            Dictionary<Card, Vector3> originalWorldPos = new();
+            trans.GetChild(0).DOLocalMoveX(0, 0.2f);
+        }
+        
+        var offset = Vector3.Distance(_cardSlots[1].position, _cardSlots[0].position) * 0.4f;
 
-            foreach (Transform slot in _cardSlots)
-            {
-                var c = slot.childCount > 0 ? slot.GetChild(0).GetComponent<Card>() : null;
-                if (c != null && c != card)
-                {
-                    c.transform.SetParent(slot, false);
-                }
-            }
-            
-            Dictionary<Card, Vector3> slotPositions = new();
-            foreach (Transform slot in _cardSlots)
-            {
-                var c = slot.childCount > 0 ? slot.GetChild(0).GetComponent<Card>() : null;
-                if (c != null && c != card)
-                {
-                    slotPositions[c] = slot.position;
-                }
-            }
-            
-            card.slot.SetSiblingIndex(bestIndex);
-            
-            foreach (var kv in slotPositions)
-            {
-                var c = kv.Key;
-                var newWorldPos = kv.Value;
+        for (var i = 0; i < _cardSlots.Count; i++)
+        {
+            if (_cardSlots[i] == card.slot || _cardSlots[i].childCount == 0)
+                continue;
 
-                var oldWorldPos = c.transform.position;
-
-                Canvas canvas = FindObjectOfType<Canvas>();
-                c.transform.SetParent(canvas.transform, true);
-                c.transform.position = oldWorldPos;
-
-                c.transform.SetParent(c.slot, true);
-                c.transform.DOMove(newWorldPos, c.animTime).SetEase(Ease.OutQuad);
-            }
+            var otherCard = _cardSlots[i].GetChild(0);
+            if (i < bestIndex)
+                otherCard.DOLocalMoveX(-offset, 0.2f);
+            else if (i >= bestIndex)
+                otherCard.DOLocalMoveX(offset, 0.2f);
         }
     }
 
@@ -102,5 +84,35 @@ public class ClipboardManager : MonoBehaviour
     {
         draggingCard = null;
         dragging = false;
+        
+        foreach (var slot in _cardSlots.Where(slot => slot.childCount > 0))
+        {
+            slot.GetChild(0).DOLocalMoveX(0, 0.2f);
+        }
+        
+        List<Card> cards = new();
+        foreach (var slot in _cardSlots)
+        {
+            if (slot.childCount <= 0) continue;
+            var c = slot.GetChild(0).GetComponent<Card>();
+            if (c != card)
+                cards.Add(c);
+        }
+        
+        if (lastBestIndex >= 0 && lastBestIndex < _cardSlots.Count)
+            cards.Insert(lastBestIndex, card);
+        else
+            cards.Insert(card.slot.GetSiblingIndex(), card);
+        
+        for (var i = 0; i < _cardSlots.Count && i < cards.Count; i++)
+        {
+            var targetSlot = _cardSlots[i];
+            var c = cards[i];
+            c.transform.SetParent(targetSlot, true);
+            c.slot = targetSlot;
+            c.SnapToSlot();
+        }
+
+        lastBestIndex = -1;
     }
 }

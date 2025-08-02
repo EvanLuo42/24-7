@@ -6,36 +6,35 @@ using UnityEngine.EventSystems;
 public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler,
     IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
-    private Canvas canvas;
-    private Vector3 offset;
-    private bool isDragging;
+    public Canvas canvas;
+    private Vector3 _offset;
 
     [Header("Settings")]
     public float hoverScale = 1.1f;
     public float animTime = 0.2f;
 
-    private RectTransform rect;
-    private ClipboardManager manager;
+    private RectTransform _rect;
+    private ClipboardManager _manager;
     [HideInInspector] public Transform slot;
 
     private void Start()
     {
-        rect = GetComponent<RectTransform>();
+        _rect = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
-        manager = GetComponentInParent<ClipboardManager>();
+        _manager = GetComponentInParent<ClipboardManager>();
         slot = transform.parent;
         SnapToSlot();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!manager.dragging)
+        if (!_manager.dragging)
             transform.DOScale(hoverScale, animTime);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!manager.dragging)
+        if (!_manager.dragging)
             transform.DOScale(1f, animTime);
     }
 
@@ -47,23 +46,22 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             eventData.pressEventCamera,
             out var localPoint
         );
-        offset = transform.localPosition - (Vector3)localPoint;
+        _offset = transform.localPosition - (Vector3)localPoint;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        isDragging = true;
         transform.DOScale(1f, animTime);
+        transform.SetParent(canvas.transform, true);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvas.transform as RectTransform,
             eventData.position,
             eventData.pressEventCamera,
             out var localPoint
         );
-        offset = rect.anchoredPosition - localPoint;
-        transform.SetParent(canvas.transform, true);
+        _offset = _rect.anchoredPosition - localPoint;
         transform.SetAsLastSibling();
-        manager.NotifyBeginDrag(this);
+        _manager.NotifyBeginDrag(this);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -74,15 +72,14 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             eventData.pressEventCamera,
             out var localPoint
         );
-        transform.localPosition = new Vector3(localPoint.x, localPoint.y, 0) + offset;
+        _rect.anchoredPosition = new Vector3(localPoint.x, localPoint.y, 0) + _offset;
 
-        manager.NotifyDragging(this);
+        _manager.NotifyDragging(this);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        isDragging = false;
-        manager.NotifyEndDrag(this);
+        _manager.NotifyEndDrag(this);
         transform.SetParent(slot, true);
         SnapToSlot();
     }

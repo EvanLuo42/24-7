@@ -12,7 +12,6 @@ public class ObjectController : MonoBehaviour
 
     private void OnMouseDown()
     {
-        
         transform.DOKill();
         _meshRenderer.material
             .DOFade(0f, 0.5f)
