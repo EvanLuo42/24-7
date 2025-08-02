@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ClipboardManager : MonoBehaviour
 {
     private readonly List<Transform> _cardSlots = new();
+    
     public GameObject cardSlotPrefab;
     public GameObject cardPrefab;
     private Card draggingCard;
