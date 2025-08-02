@@ -76,24 +76,29 @@ public class ClipboardManager : MonoBehaviour
             slot.GetChild(0).DOLocalMoveX(0, 0.2f);
         }
         
+        // get all cards in slots, excluding the dragged card
         var cards = CardSlots
             .Select(slot => slot.GetComponentInChildren<Card>())
-            .Where(c => c)
+            .Where(c => c && c != card)
             .ToList();
         
-        var insertIndex = card.slot ? card.slot.GetSiblingIndex() : 0;
+        var insertIndex = 0;
         
-        if (_lastBestIndex >= 0 && _lastBestIndex <= cards.Count)
+        if (_lastBestIndex >= 0)
         {
             insertIndex = Mathf.Clamp(_lastBestIndex, 0, cards.Count);
+            cards.Insert(insertIndex, card);
+        }
+        else
+        {
+            // if no best index found, insert at the original index of the card
+            var originalIndex = card.slot ? card.slot.GetSiblingIndex() : 0;
+            insertIndex = Mathf.Clamp(originalIndex, 0, cards.Count);
+            cards.Insert(insertIndex, card);
         }
         
-        if (_lastBestIndex >= 0 && _lastBestIndex < CardSlots.Count)
-            cards.Insert(insertIndex, card);
-        else
-            cards.Insert(card.slot.GetSiblingIndex(), card);
-        
-        for (var i = 0; i < CardSlots.Count && i < cards.Count; i++)
+        // Reassign all cards to the correct slots
+        for (var i = 0; i < cards.Count && i < CardSlots.Count; i++)
         {
             var targetSlot = CardSlots[i];
             var c = cards[i];
