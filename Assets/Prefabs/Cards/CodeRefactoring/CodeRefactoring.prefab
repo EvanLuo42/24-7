@@ -94,6 +94,7 @@ MonoBehaviour:
   hoverScale: 1.05
   animTime: 0.2
   slot: {fileID: 0}
+  duration: 1
 --- !u!225 &3728925954611466903
 CanvasGroup:
   m_ObjectHideFlags: 0

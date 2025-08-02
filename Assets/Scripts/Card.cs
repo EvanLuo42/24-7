@@ -2,6 +2,7 @@ using CardSystem;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler,
     IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
@@ -17,7 +18,8 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private ClipboardManager _manager;
     [HideInInspector] public Transform slot;
 
-    public bool day;
+    public int duration;
+    public int passed;
 
     private void Start()
     {

@@ -126,6 +126,8 @@ public class ClipboardManager : MonoBehaviour
             c.slot = targetSlot;
             c.SnapToSlot();
         }
+        
+        Destroy(applyCard.gameObject);
     }
 
     public void AddRandomCard()

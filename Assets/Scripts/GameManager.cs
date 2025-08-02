@@ -96,9 +96,21 @@ public class GameManager : MonoBehaviour
                 .WaitForCompletion();
             card.Apply();
             yield return new WaitForSeconds(0.5f);
-            yield return rect.DOLocalMove(originalPos, 0.2f)
-                .SetEase(Ease.InQuad)
-                .WaitForCompletion();
+            var cardController = card.GetComponent<Card>();
+            cardController.passed++;
+            if (cardController.passed < cardController.duration)
+            {
+                yield return rect.DOLocalMove(originalPos, 0.2f)
+                    .SetEase(Ease.InQuad)
+                    .WaitForCompletion();
+            }
+            else
+            {
+                yield return rect.DOLocalMoveY(originalPos.y - 100f, 0.2f)
+                    .SetEase(Ease.InQuad)
+                    .OnComplete(() => cardController.Remove())
+                    .WaitForCompletion();
+            }
             yield return new WaitForSeconds(0.5f);
         }
     }
