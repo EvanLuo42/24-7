@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487f5b2b70a2a56499af91109903cb16, type: 3}
   m_Name: LTI_CE
   m_EditorClassIdentifier: 
+  cardName: Lock Tf In
+  cardDescription: "Productivity -\r\nEnergy -\r\n(BUFF) For the next 3 rounds, productivity
+    efficiency +25%. \r\n\r\n\"First chaos, then clarity. It hurts now, but soon,
+    your code will shine with frightening precision.\""
   cardEffectConfig:
   - {fileID: 11400000, guid: 83b52cc084d6d5c4bb94a9b680bbce09, type: 2}

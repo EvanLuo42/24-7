@@ -176,7 +176,10 @@ PrefabInstance:
     - {fileID: 65702495048144492, guid: b7f71995436614cf4b718a84346bcc47, type: 3}
     - {fileID: -4773567683386083938, guid: b7f71995436614cf4b718a84346bcc47, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -4958312485696224706, guid: b7f71995436614cf4b718a84346bcc47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 526837198}
   m_SourcePrefab: {fileID: 100100000, guid: b7f71995436614cf4b718a84346bcc47, type: 3}
 --- !u!1 &121156141
 GameObject:
@@ -673,6 +676,37 @@ Transform:
   - {fileID: 1281514329}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &526837196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4958312485696224706, guid: b7f71995436614cf4b718a84346bcc47, type: 3}
+  m_PrefabInstance: {fileID: 48543152}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &526837198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526837196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fcda6c4f81605041bbf53148adb4145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monitorObject: {fileID: 526837196}
+  monitorCanvas: {fileID: 0}
+  cardImage: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardDescriptionText: {fileID: 0}
+  codeRefactoringSprite: {fileID: 21300000, guid: 456032e335dfd4164b93f3285ee6a1ce, type: 3}
+  lockTfInSprite: {fileID: 21300000, guid: 739f704e43b8948fa863ef2701d87e94, type: 3}
+  fadeInDuration: 0.3
+  fadeOutDuration: 0.2
+  topLeftCorner: {x: -0.18, y: -0.13, z: 0.66}
+  topRightCorner: {x: 0.3, y: 0.27, z: 0.17}
+  bottomLeftCorner: {x: 0.06, y: 0, z: 1}
+  bottomRightCorner: {x: 0.18, y: 0.19, z: 0.14}
+  screenRotation: {x: -90, y: 180, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

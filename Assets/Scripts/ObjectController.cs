@@ -69,10 +69,27 @@ public class ObjectController : MonoBehaviour
             transform.DOMove(_originalPosition, 0.3f).SetEase(Ease.OutQuad);
         }
     }
+    
+    private void OnMouseExit()
+    {
+        // Hide card info when mouse leaves the object
+        var monitorDisplay = FindFirstObjectByType<MonitorDisplay>();
+        if (monitorDisplay != null)
+        {
+            monitorDisplay.HideCardInfo();
+        }
+    }
 
     private void OnMouseEnter()
     {
         SfxManager.Instance.Play("Hover Card");
+        
+        // Display card info on monitor
+        var monitorDisplay = FindFirstObjectByType<MonitorDisplay>();
+        if (monitorDisplay != null && dayCardEffect != null)
+        {
+            monitorDisplay.DisplayCardInfo(dayCardEffect);
+        }
     }
 
     private bool IsOverlapping(GameObject other)
