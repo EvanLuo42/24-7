@@ -12,5 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487f5b2b70a2a56499af91109903cb16, type: 3}
   m_Name: CR_CE
   m_EditorClassIdentifier: 
+  cardName: Code Refactoring
+  cardDescription: 'Productivity +
+
+    Stress +
+
+    Energy -
+
+    (BUFF) Flow
+    state: Productivity efficiency +15%. Lasts for 3 rounds.
+
+    
+
+    "You push
+    all distractions aside and plunge headfirst into the work. Reality blurs around
+    you. You are the task now, a force of pure, unrelenting focus."'
   cardEffectConfig:
   - {fileID: 11400000, guid: 5812f455ef3fa964fa0947d30a3f46fc, type: 2}

@@ -35,12 +35,30 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         if (_manager.dragging) return;
         transform.DOScale(hoverScale, animTime);
         SfxManager.Instance.Play("Hover Card");
+        
+        // Display card info on monitor
+        var applyCard = GetComponent<ApplyCard>();
+        if (applyCard != null && applyCard.cardEffect != null)
+        {
+            var monitorDisplay = FindFirstObjectByType<MonitorDisplay>();
+            if (monitorDisplay != null)
+            {
+                monitorDisplay.DisplayCardInfo(applyCard.cardEffect, duration);
+            }
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (!_manager.dragging)
             transform.DOScale(1f, animTime);
+        
+        // Hide card info when mouse leaves the card
+        var monitorDisplay = FindFirstObjectByType<MonitorDisplay>();
+        if (monitorDisplay != null)
+        {
+            monitorDisplay.HideCardInfo();
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
