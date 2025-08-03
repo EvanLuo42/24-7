@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayCardEffect: {fileID: 11400000, guid: 4571215f8c33140efa3bb1e1b8fcdc02, type: 2}
   nightCardEffect: {fileID: 11400000, guid: 14a558342bce24a90a9e8871a338284a, type: 2}
+  card: {fileID: 3419224641930791905, guid: 39e5404d3b4e94ceead87c0cf9472b04, type: 3}
 --- !u!114 &8587962764047957975
 MonoBehaviour:
   m_ObjectHideFlags: 0

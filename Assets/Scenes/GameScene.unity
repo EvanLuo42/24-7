@@ -785,13 +785,13 @@ MonoBehaviour:
   initEffect: {fileID: 11400000, guid: 403210dbb871f324f8918376db3d5366, type: 2}
   clipboardManager: {fileID: 1241554830}
   tableManager: {fileID: 427492004}
-  turnOperateCount: 0
   cardsToStartWith:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3419224641930791905, guid: 3fba85fed0a624e26931f4cd315b0bdb, type: 3}
+  - {fileID: 3419224641930791905, guid: 3fba85fed0a624e26931f4cd315b0bdb, type: 3}
   - {fileID: 3419224641930791905, guid: 3552d509fd2604a9b97073b06fc94b43, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3419224641930791905, guid: 7edff26c02b896046be696a196455da0, type: 3}
+  - {fileID: 3419224641930791905, guid: 3fba85fed0a624e26931f4cd315b0bdb, type: 3}
+  turnOperateCount: 0
 --- !u!1 &261037019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,12 +1260,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427492003}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ce97154e333e4a799d8fe306ffa6c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardsSo: {fileID: 0}
+  cardsSo: {fileID: 11400000, guid: 3aa05f75b1fe9480b87e7592c5df9126, type: 2}
   objectSlots:
   - {fileID: 121156141}
   - {fileID: 1697432761}
@@ -2098,7 +2098,7 @@ MonoBehaviour:
   cardsSo: {fileID: 11400000, guid: 3aa05f75b1fe9480b87e7592c5df9126, type: 2}
   dragging: 0
   basicCardButton: {fileID: 568915963}
-  goWorkEffect: {fileID: 11400000, guid: 9337a80b1f7e64f0f87f1fca610b5eb1, type: 2}
+  Hajimi: {fileID: 3419224641930791905, guid: 3fba85fed0a624e26931f4cd315b0bdb, type: 3}
   workOverloadPrefab: {fileID: 1887263134942254465, guid: 1c2260f9677a94c3792bf1b38454a563, type: 3}
 --- !u!114 &1241554831
 MonoBehaviour:

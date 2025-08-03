@@ -32,3 +32,4 @@ MonoBehaviour:
   - Possibility: 0.0524
     CardPrefabList:
     - {fileID: 3419224641930791905, guid: 673e08d6610c7d94ba49e3ec5ecb54cd, type: 3}
+    - {fileID: 3419224641930791905, guid: 385544d8e87cb4600a16fe0de995579d, type: 3}
