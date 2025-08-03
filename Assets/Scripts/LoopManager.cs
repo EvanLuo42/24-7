@@ -230,7 +230,6 @@ public class LoopManager : MonoBehaviour
         foreach (var card in cardsToExecute)
         {
             if (!card) {continue;}
-            print(card.name);
             var rect = card.GetComponent<RectTransform>();
             var originalPos = rect.localPosition;
             yield return rect.DOLocalMoveY(originalPos.y + 50f, 0.2f)
