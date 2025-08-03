@@ -3,6 +3,7 @@ using CardSystem.CardEffect;
 using CardSystem.Data;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectController : MonoBehaviour
 {
@@ -19,10 +20,14 @@ public class ObjectController : MonoBehaviour
 
     private bool _deleting;
 
+    private bool _displayDay = true;
+
     private void Start()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
         _originalPosition = transform.position;
+        var switchButton = GameObject.Find("SwitchScreenModeButton");
+        switchButton.GetComponent<Button>().onClick.AddListener(OnClickSwitchDay);
     }
 
     private void OnMouseDown()
@@ -103,18 +108,7 @@ public class ObjectController : MonoBehaviour
         // Display card info on monitor
         var monitorDisplay = FindFirstObjectByType<MonitorDisplay>();
         if (!monitorDisplay) return;
-        switch (GameContext.currentPhase)
-        {
-            case LoopManager.LoopPhase.Dawn:
-            case LoopManager.LoopPhase.Day:
-                monitorDisplay.DisplayCardInfo(dayCardEffect);
-                break;
-            case LoopManager.LoopPhase.Night:
-                monitorDisplay.DisplayCardInfo(nightCardEffect);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        monitorDisplay.DisplayCardInfo(_displayDay ? dayCardEffect : nightCardEffect);
     }
 
     private bool IsOverlapping(GameObject other)
@@ -131,5 +125,10 @@ public class ObjectController : MonoBehaviour
         var screenPos = Input.mousePosition;
         screenPos.z = _dragDepth;
         return Camera.main!.ScreenToWorldPoint(screenPos);
+    }
+
+    private void OnClickSwitchDay()
+    {
+        _displayDay = !_displayDay;
     }
 }

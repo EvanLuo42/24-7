@@ -160,7 +160,7 @@ public class MonitorDisplay : MonoBehaviour
         panel.transform.SetParent(canvasObj.transform, false);
         
         Image panelImage = panel.AddComponent<Image>();
-        panelImage.color = new Color(1.0f, 0.0f, 0.0f, 0.8f); // Red with transparency
+        panelImage.color = Color.black;
         
         RectTransform panelRect = panel.GetComponent<RectTransform>();
         // Fill the entire canvas area
@@ -178,7 +178,7 @@ public class MonitorDisplay : MonoBehaviour
         _nameRect = cardNameText.GetComponent<RectTransform>();
         
         // Create card description text 
-        cardDescriptionText = CreateTextElement("CardDescription", panel.transform, "Card Description", 24, Color.white);
+        cardDescriptionText = CreateTextElement("CardDescription", panel.transform, "Card Description", 16, Color.white);
         _descRect = cardDescriptionText.GetComponent<RectTransform>();
         
         // Apply initial positioning
@@ -238,7 +238,7 @@ public class MonitorDisplay : MonoBehaviour
         
         text.fontSize = fontSize;
         text.color = color;
-        text.alignment = TextAnchor.MiddleCenter;
+        text.alignment = TextAnchor.MiddleLeft;
         text.horizontalOverflow = HorizontalWrapMode.Wrap;
         text.verticalOverflow = VerticalWrapMode.Truncate;
         
