@@ -39,7 +39,16 @@ public class LoopManager : MonoBehaviour
         initEffect.ApplyEffect();
         // initEffect的补丁，暂时这么写因为不知道在哪改 initEffect
         GameContext.Attributes.SleepingHours = 14;
+        StartCoroutine(LateStart());
+    }
+    private IEnumerator LateStart()
+    {
+        // 等待所有其他 Start()先执行完
+        yield return null;
         
+        // “LateStart”逻辑
+        
+        // 加卡到列表里
         for (var i = 0; i < 6; i++)
         {
             clipboardManager.AddRandomCard();
@@ -87,10 +96,15 @@ public class LoopManager : MonoBehaviour
         // bgm
         OstManager.Instance.Play("Planning");
         
+<<<<<<< HEAD
         // 按睡眠时间抽牌
         tableManager.GenerateObjects(Mathf.FloorToInt(GameContext.Attributes.SleepingHours / 4));
 
         clipboardManager.turnOperateCount = 0;
+=======
+        // 按睡眠时间抽牌 (物体)
+        tableManager.GenerateObjects(Mathf.FloorToInt(GameContext.Attributes.SleepingHours/4));
+>>>>>>> 5de7a3a (Rarity)
         
         // 按睡眠时间回精力，一个脱离 Card System 架构的操作，不推荐。
         var refresh = Mathf.Lerp(0, 100, Mathf.Clamp(GameContext.Attributes.SleepingHours / 8, 0, 1));
@@ -144,6 +158,7 @@ public class LoopManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             var cardController = card.GetComponent<Card>();
+            if (!cardController) {continue;}
             cardController.passed++;
 
             if (cardController.passed < cardController.duration)

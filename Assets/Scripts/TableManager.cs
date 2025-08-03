@@ -16,6 +16,8 @@ public class TableManager : MonoBehaviour
         {
             if (count == amount) return;
             if (slot.GetComponentInChildren<ObjectController>()) continue;
+            
+            // 根据稀有度加卡
             var objectPrefab = objectsSo.objectPrefabs[Random.Range(0, objectsSo.objectPrefabs.Count)];
             Instantiate(objectPrefab, slot.transform, false);
             count++;
