@@ -34,6 +34,10 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            Remove();
+        }
         if (_manager.dragging) return;
         transform.DOScale(hoverScale, animTime);
         SfxManager.Instance.Play("Hover Card");

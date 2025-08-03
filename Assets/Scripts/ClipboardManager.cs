@@ -133,6 +133,8 @@ public class ClipboardManager : MonoBehaviour
         }
         
         Destroy(applyCard.gameObject);
+        
+        ReorderAllCards();
     }
 
     public void AddRandomCard()

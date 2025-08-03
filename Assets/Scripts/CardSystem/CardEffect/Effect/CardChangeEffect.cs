@@ -24,6 +24,7 @@ namespace CardSystem.CardEffect.Effect
             switch (type)
             {
                 case CardChangeType.Add:
+                    clipboard.ReorderAllCards();
                     for (var i = 0; i < amount; i++)
                     {
                         clipboard.AddRandomCard();
