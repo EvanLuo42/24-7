@@ -17,6 +17,8 @@ public class ObjectController : MonoBehaviour
     
     private Vector3 _originalPosition;
 
+    private bool _deleting;
+
     private void Start()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
@@ -25,13 +27,17 @@ public class ObjectController : MonoBehaviour
 
     private void OnMouseDown()
     {
-
+        if (_deleting) return;
         SfxManager.Instance.Play("Click Object");
         // 何尝不算一种 NTR
         switch (GameContext.currentPhase)
         {
             case LoopManager.LoopPhase.Dawn:
+                var loopManager = FindFirstObjectByType<LoopManager>();
+                if (loopManager.turnOperateCount == 1) return;
                 transform.DOKill();
+                _deleting = true;
+                loopManager.turnOperateCount++;
                 _meshRenderer.material
                     .DOFade(0f, 0.5f)
                     .OnComplete(() =>
@@ -44,7 +50,6 @@ public class ObjectController : MonoBehaviour
                     });
                 break;
             case LoopManager.LoopPhase.Day:
-                
                 break;
             case LoopManager.LoopPhase.Night:
                 _isDragging = true;

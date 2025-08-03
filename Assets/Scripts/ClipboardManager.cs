@@ -24,8 +24,6 @@ public class ClipboardManager : MonoBehaviour
     
     private int _lastBestIndex = -1;
 
-    public int turnOperateCount;
-
     private void Start()
     {
         for (var i = 0; i < 12; i++)
@@ -193,19 +191,20 @@ public class ClipboardManager : MonoBehaviour
 
     private void OnClickAddBasicCard()
     {
-        if (turnOperateCount == 1) return;
+        var manager = FindFirstObjectByType<LoopManager>();
+        if (manager.turnOperateCount == 1) return;
         switch (GameContext.currentPhase)
         {
             case LoopManager.LoopPhase.Dawn:
                 AddCard(goWorkEffect);
                 ReorderAllCards();
-                turnOperateCount++;
+                manager.turnOperateCount++;
                 break;
             case LoopManager.LoopPhase.Day:
                 break;
             case LoopManager.LoopPhase.Night:
                 FindFirstObjectByType<TableManager>().AddObjectByPrefab(workOverloadPrefab);
-                turnOperateCount++;
+                manager.turnOperateCount++;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

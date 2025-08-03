@@ -21,6 +21,8 @@ public class LoopManager : MonoBehaviour
     public BaseEffect initEffect;
     public ClipboardManager clipboardManager;
     public TableManager tableManager;
+    
+    public int turnOperateCount;
 
     private AudioSource _audioSource;
 
@@ -90,7 +92,7 @@ public class LoopManager : MonoBehaviour
         // 按睡眠时间抽牌
         tableManager.GenerateObjects(Mathf.FloorToInt(GameContext.Attributes.SleepingHours / 4));
 
-        clipboardManager.turnOperateCount = 0;
+        turnOperateCount = 0;
         
         // 按睡眠时间回精力，一个脱离 Card System 架构的操作，不推荐。
         var refresh = Mathf.Lerp(0, 100, Mathf.Clamp(GameContext.Attributes.SleepingHours / 8, 0, 1));
