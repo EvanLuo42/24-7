@@ -50,7 +50,9 @@ public class LoopManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {            
+        Debug.Log("Productivity:" + GameContext.Attributes.Productivity);
+        Debug.Log("Productivity:" + GameContext.Attributes.Productivity);
         
         // 偷懒写在这里了
         if (GameContext.currentPhase == LoopPhase.Night)

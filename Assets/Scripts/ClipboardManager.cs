@@ -149,10 +149,11 @@ public class ClipboardManager : MonoBehaviour
 
     public void AddRandomCard()
     {
+        // 每个卡槽抽一次卡
         foreach (var slot in CardSlots.Where(slot => !slot.GetComponentInChildren<Card>()))
         {
-            var dayCards = cardsSo.cardPrefabs.Where(obj => obj.GetComponentInChildren<Card>().day).ToList();
-            Instantiate(dayCards[Random.Range(0, dayCards.Count)], slot, false);
+            // 长难句，别管
+            Instantiate(cardsSo.GetRandomRarity().CardPrefabList[Random.Range(0, cardsSo.GetRandomRarity().CardPrefabList.Count)], slot, false);
             return;
         }
     }
@@ -161,13 +162,16 @@ public class ClipboardManager : MonoBehaviour
     {
         foreach (var slot in CardSlots.Where(slot => !slot.GetComponentInChildren<Card>()))
         {
-            foreach (var cardPrefab in cardsSo.cardPrefabs.Where(cardPrefab => cardPrefab.GetComponent<ApplyCard>().cardEffect == dayCardEffect))
+            foreach (var rarityCardList in cardsSo.CardConfig)
             {
-                var dayCard = Instantiate(cardPrefab, slot, false);
-                var dayLocalPos = dayCard.transform.localPosition;
-                dayCard.transform.localPosition = new Vector3(dayLocalPos.x, dayLocalPos.y - 30f, 0);
-                dayCard.transform.DOLocalMoveY(0, 0.3f);
-                return;
+                foreach (var cardPrefab in rarityCardList.CardPrefabList.Where(cardPrefab => cardPrefab.GetComponent<ApplyCard>().cardEffect == dayCardEffect))
+                {
+                    var dayCard = Instantiate(cardPrefab, slot, false);
+                    var dayLocalPos = dayCard.transform.localPosition;
+                    dayCard.transform.localPosition = new Vector3(dayLocalPos.x, dayLocalPos.y - 30f, 0);
+                    dayCard.transform.DOLocalMoveY(0, 0.3f);
+                    return;
+                }
             }
         }
     }
