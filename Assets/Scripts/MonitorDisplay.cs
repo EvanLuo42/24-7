@@ -41,6 +41,9 @@ public class MonitorDisplay : MonoBehaviour
     public Vector4 namePosition = new Vector4(0.4f, 0.7f, 0.95f, 0.9f);
     public Vector4 descriptionPosition = new Vector4(0.4f, 0.1f, 0.95f, 0.65f);
     
+    [Header("Card Lookup")]
+    public CardEffectDatabase cardEffectDatabase;
+    
     private CanvasGroup _canvasGroup;
     private bool _isDisplaying = false;
     private RectTransform _canvasRect;
@@ -286,34 +289,22 @@ public class MonitorDisplay : MonoBehaviour
     
     private string GetCardName(CardEffect cardEffect)
     {
-        // First try to get the name from the card effect asset
-        if (!string.IsNullOrEmpty(cardEffect.cardName))
-        {
-            return cardEffect.cardName;
-        }
-        
-        // Fallback to hardcoded names
-        if (IsCodeRefactoringCard(cardEffect))
-        {
-            return "Code Refactoring";
-        }
-        else if (IsLockTfInCard(cardEffect))
-        {
-            return "Lock Tf In";
-        }
-        
-        return "Unknown Card";
+        var entry = cardEffectDatabase.GetEntry(cardEffect);
+        if (entry != null && !string.IsNullOrEmpty(entry.overrideName))
+            return entry.overrideName;
+
+        return !string.IsNullOrEmpty(cardEffect.cardName) ? cardEffect.cardName : "Unknown Card";
     }
     
     private string GetCardDescription(CardEffect cardEffect)
     {
-        // First try to get the description from the card effect asset
+        var entry = cardEffectDatabase.GetEntry(cardEffect);
+        if (entry != null && !string.IsNullOrEmpty(entry.overrideDescription))
+            return entry.overrideDescription;
+
         if (!string.IsNullOrEmpty(cardEffect.cardDescription))
-        {
             return cardEffect.cardDescription;
-        }
-        
-        // Fallback to generated description
+
         return GenerateDescriptionFromEffects(cardEffect);
     }
     
@@ -339,7 +330,7 @@ public class MonitorDisplay : MonoBehaviour
         string desc = "";
         foreach (var config in attrEffect.attributeChangeConfigs)
         {
-            string attributeName = config.attributeToChange.ToString();
+            string attributeName = config.attributeToOperate.ToString();
             string operation = GetOperationSymbol(config.operationToDo);
             desc += $"• {attributeName}: {operation} {config.value}\n";
         }
@@ -361,11 +352,10 @@ public class MonitorDisplay : MonoBehaviour
     
     private void UpdateCardImage(CardEffect cardEffect)
     {
-        // Get the appropriate sprite based on the card effect
-        Sprite sprite = GetSpriteForCardEffect(cardEffect);
-        if (sprite != null)
+        var entry = cardEffectDatabase.GetEntry(cardEffect);
+        if (entry != null && entry.cardSprite)
         {
-            cardImage.sprite = sprite;
+            cardImage.sprite = entry.cardSprite;
         }
     }
     

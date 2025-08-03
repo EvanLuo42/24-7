@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487f5b2b70a2a56499af91109903cb16, type: 3}
+  m_Name: GT_CE
+  m_EditorClassIdentifier: 
+  cardName: Gym Trip
+  cardDescription: "Stress -\nEnergy -\n\n\"Sweat and discipline bring a painful
+    clarity, wearing down body and worry alike. You hurt in a good way.\u201D"
+  cardEffectConfig:
+  - {fileID: 11400000, guid: b4ccf3224ec3146a197b764f86cf4ab8, type: 2}

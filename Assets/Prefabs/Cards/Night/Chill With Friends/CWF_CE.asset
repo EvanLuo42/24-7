@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487f5b2b70a2a56499af91109903cb16, type: 3}
+  m_Name: CWF_CE
+  m_EditorClassIdentifier: 
+  cardName: Chill With Friends
+  cardDescription: "Stress randomly +/- (50%)\nEnergy -\nCooking +\n\n\"Socializing:
+    sometimes it's comfort, sometimes chaos. At least the food\u2019s consistently
+    good.\u201D"
+  cardEffectConfig:
+  - {fileID: 11400000, guid: ec1988fcb34b147a396d4d79b111de21, type: 2}

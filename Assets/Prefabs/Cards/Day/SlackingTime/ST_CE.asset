@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487f5b2b70a2a56499af91109903cb16, type: 3}
+  m_Name: ST_CE
+  m_EditorClassIdentifier: 
+  cardName: Code Refactoring
+  cardDescription: 'Productivity +
+
+    Stress +
+
+    Energy -
+
+    (BUFF) Flow state:
+    Productivity efficiency +15%. Lasts for 3 rounds.
+
+
+
+    "You push all distractions
+    aside and plunge headfirst into the work. Reality blurs around you. You are the
+    task now, a force of pure, unrelenting focus."'
+  cardEffectConfig:
+  - {fileID: 11400000, guid: 67ce4352a22e94813b5c6f4570a9609b, type: 2}

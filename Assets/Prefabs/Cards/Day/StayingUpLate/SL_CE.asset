@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487f5b2b70a2a56499af91109903cb16, type: 3}
+  m_Name: SL_CE
+  m_EditorClassIdentifier: 
+  cardName: Staying Up Late
+  cardDescription: "Stress -\nEnergy +\n(BUFF) Randomly remove one daytime agenda
+    card; \n\n\"The city sleeps, but you do not. In these stolen hours of darkness,
+    something mundane is cast aside. Was it important? Probably not.\""
+  cardEffectConfig:
+  - {fileID: 11400000, guid: 5e4849f12c4884dd795726c42af37171, type: 2}

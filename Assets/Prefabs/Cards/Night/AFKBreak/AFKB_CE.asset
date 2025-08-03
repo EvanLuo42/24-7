@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487f5b2b70a2a56499af91109903cb16, type: 3}
+  m_Name: AFKB_CE
+  m_EditorClassIdentifier: 
+  cardName: AFK Break
+  cardDescription: "Stress -\n(DEBUFF) If sleep time is available after playing this
+    card, immediately sleep afterward.\n\n\"You step away from it all, drifting from
+    the realm of stress into the quiet void of unconsciousness.\u201D"
+  cardEffectConfig:
+  - {fileID: 11400000, guid: b7ed095169eeb486db66d26e1a990b11, type: 2}

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487f5b2b70a2a56499af91109903cb16, type: 3}
+  m_Name: 3GB_CE
+  m_EditorClassIdentifier: 
+  cardName: 3AM Galaxy Brain
+  cardDescription: "Productivity +++\nStress +\nEnergy --\n(DEBUFF) Randomly discard
+    one card from hand.\n\n\"It\u2019s late. Far too late. Yet, brilliance flashes
+    through your exhausted mind. Revelations emerge, though something slips through
+    your fingers, lost in the dark.\""
+  cardEffectConfig:
+  - {fileID: 11400000, guid: 161ae078a0b624614a5e5fb04ae4878b, type: 2}
+  - {fileID: 11400000, guid: ffac67fdf20ee4c389219fa08e292b32, type: 2}

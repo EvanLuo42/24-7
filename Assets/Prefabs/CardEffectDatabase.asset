@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624674b87a8e48eba9792b69c172412a, type: 3}
+  m_Name: CardEffectDatabase
+  m_EditorClassIdentifier: 
+  cardEntries:
+  - id: Lock Tf In
+    cardEffect: {fileID: 11400000, guid: d06539d65ae0e5e4d92d80012c2c712f, type: 2}
+    cardSprite: {fileID: 21300000, guid: 739f704e43b8948fa863ef2701d87e94, type: 3}
+    overrideName: Lock Tf In
+    overrideDescription: 
+  - id: Code Refactoring
+    cardEffect: {fileID: 11400000, guid: 73ff7d45c09c4624486157aef88b6fef, type: 2}
+    cardSprite: {fileID: 21300000, guid: 456032e335dfd4164b93f3285ee6a1ce, type: 3}
+    overrideName: Code Refactoring
+    overrideDescription: 
+  - id: Day Dreaming
+    cardEffect: {fileID: 11400000, guid: ddb484a1930f947648ad06fdcde98163, type: 2}
+    cardSprite: {fileID: 21300000, guid: 456032e335dfd4164b93f3285ee6a1ce, type: 3}
+    overrideName: Day Dreaming
+    overrideDescription: 
+  - id: Slacking Time
+    cardEffect: {fileID: 11400000, guid: 4a867d9add8874d7389812aa2ff51e07, type: 2}
+    cardSprite: {fileID: 21300000, guid: 2e2a0e0d6674a40fa99450399ff3ca06, type: 3}
+    overrideName: Slacking Time
+    overrideDescription: 
+  - id: Lo-Fi Music
+    cardEffect: {fileID: 11400000, guid: 76c92a77b12dc48e3b8ea937c9eee378, type: 2}
+    cardSprite: {fileID: 21300000, guid: 28544b2adab4e419fb7c4b3eea36a0da, type: 3}
+    overrideName: Lo-Fi Music
+    overrideDescription: 
+  - id: Gimme A Hand
+    cardEffect: {fileID: 11400000, guid: d62025d5dcfa449f2b7fee3cf693168e, type: 2}
+    cardSprite: {fileID: 21300000, guid: bb456ab6df4ba4e4b86a05ec67024adc, type: 3}
+    overrideName: Gimme A Hand
+    overrideDescription: 
+  - id: Vibe Coding
+    cardEffect: {fileID: 11400000, guid: 3c9173925bc08430c90f2f3d43785e2c, type: 2}
+    cardSprite: {fileID: 21300000, guid: d45c8744acdaa4d34a509a884d9e01d6, type: 3}
+    overrideName: Vibe Coding
+    overrideDescription: 
+  - id: Side Hustle Quest
+    cardEffect: {fileID: 11400000, guid: 4571215f8c33140efa3bb1e1b8fcdc02, type: 2}
+    cardSprite: {fileID: 21300000, guid: cb6d78dd200f249fdaadca05222b29cb, type: 3}
+    overrideName: Side Hustle Quest
+    overrideDescription: 
+  - id: StarB*cks
+    cardEffect: {fileID: 11400000, guid: 45b70304c7a5a45d4a694c29632f12e1, type: 2}
+    cardSprite: {fileID: 21300000, guid: e506d7347e6364a058e1f58760699d86, type: 3}
+    overrideName: StarB*cks
+    overrideDescription: 
+  - id: WcDowald
+    cardEffect: {fileID: 11400000, guid: c71f8e02393f846d2852e18a7ca6e5b2, type: 2}
+    cardSprite: {fileID: 21300000, guid: 87f808bdbc1984d8db90ce3fe60759ab, type: 3}
+    overrideName: WcDowald
+    overrideDescription: 
+  - id: Staying Up Late
+    cardEffect: {fileID: 11400000, guid: c23e1a9187d184125b8d444084d24ba8, type: 2}
+    cardSprite: {fileID: 21300000, guid: 5188d32f2a94c43a98b73aac2b6b9341, type: 3}
+    overrideName: Staying Up Late
+    overrideDescription: 
+  - id: 3AM Galaxy Brain
+    cardEffect: {fileID: 11400000, guid: 281db0cef6a414b35b62fb8afd66fa48, type: 2}
+    cardSprite: {fileID: 21300000, guid: ef6b2c4072b7445e1abd311e41d38597, type: 3}
+    overrideName: 3AM Galaxy Brain
+    overrideDescription: 
+  - id: Chill With Friends
+    cardEffect: {fileID: 11400000, guid: 7e42f5eeff7004134871761e8c51dd6a, type: 2}
+    cardSprite: {fileID: 21300000, guid: 7195d0fe3bccd4e02bf839e952faece1, type: 3}
+    overrideName: Chill With Friends
+    overrideDescription: 
+  - id: Master Chef Wanna Be
+    cardEffect: {fileID: 11400000, guid: f259a974595814f539151e227f22222f, type: 2}
+    cardSprite: {fileID: 21300000, guid: 0a8ee7f86aaa44491b1efdefba6839ed, type: 3}
+    overrideName: Master Chef Wanna Be
+    overrideDescription: 
+  - id: AFK Break
+    cardEffect: {fileID: 11400000, guid: 1e2745c67f2594a5eb774f42d39a9b82, type: 2}
+    cardSprite: {fileID: 21300000, guid: ea749c400716d4126b8d5e57eb4dfdd1, type: 3}
+    overrideName: AFK Break
+    overrideDescription: 
+  - id: T1TK0K
+    cardEffect: {fileID: 11400000, guid: f6725c0be42d54df9aef21ba6a489ebd, type: 2}
+    cardSprite: {fileID: 21300000, guid: 0acbb040b971b458b8cf6dc8a7838106, type: 3}
+    overrideName: T1TK0K
+    overrideDescription: 
+  - id: Arcade Trip
+    cardEffect: {fileID: 11400000, guid: ab3efd0132cef465c9a74e4b23507725, type: 2}
+    cardSprite: {fileID: 21300000, guid: 68310f4b6b88b4f1688d0ab594165608, type: 3}
+    overrideName: Arcade Trip
+    overrideDescription: 
+  - id: Gym Trip
+    cardEffect: {fileID: 11400000, guid: 14a558342bce24a90a9e8871a338284a, type: 2}
+    cardSprite: {fileID: 21300000, guid: f60c79214ae1340aab9983937d4ccd4f, type: 3}
+    overrideName: Gym Trip
+    overrideDescription: 
+  - id: Midnight Doordash
+    cardEffect: {fileID: 11400000, guid: a56afaec1d70949d2887d71e3d4e9af4, type: 2}
+    cardSprite: {fileID: 21300000, guid: 0fbf10861c09d4675843407799daa460, type: 3}
+    overrideName: Midnight Doordash
+    overrideDescription: 
+  - id: Write My ToDo List
+    cardEffect: {fileID: 11400000, guid: 82502c70803a24909b73c9ce82aa4769, type: 2}
+    cardSprite: {fileID: 21300000, guid: 22d5c41e6299c49c08b1e630eb5c82dc, type: 3}
+    overrideName: Write My ToDo List
+    overrideDescription: 
+  - id: White Monster
+    cardEffect: {fileID: 11400000, guid: c9d8fc7eaeea4465f974185fd995f43b, type: 2}
+    cardSprite: {fileID: 21300000, guid: 18711754a2e3a4b248aa3c03b138a0f5, type: 3}
+    overrideName: White Monster
+    overrideDescription: 

@@ -707,6 +707,10 @@ MonoBehaviour:
   bottomLeftCorner: {x: 0.06, y: 0, z: 1}
   bottomRightCorner: {x: 0.18, y: 0.19, z: 0.14}
   screenRotation: {x: -90, y: 180, z: 0}
+  imagePosition: {x: 0.05, y: 0.2, z: 0.35, w: 0.8}
+  namePosition: {x: 0.4, y: 0.7, z: 0.95, w: 0.9}
+  descriptionPosition: {x: 0.4, y: 0.1, z: 0.95, w: 0.65}
+  cardEffectDatabase: {fileID: 11400000, guid: 31b19a2ed3506440c9086571ba16ec95, type: 2}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,8 +1021,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.5069885, y: -192.1563}
-  m_SizeDelta: {x: 704.5593, y: 228.3125}
+  m_AnchoredPosition: {x: 0, y: -192.1563}
+  m_SizeDelta: {x: 730, y: 228.3125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1241554828
 MonoBehaviour:
@@ -1040,8 +1044,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 4d274bdf413694dd8a60e657de364ebd, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
