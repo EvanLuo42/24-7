@@ -8,6 +8,27 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/HECG.unity
+    guid: 8dbb105948197482aadf1b816c72ac8f
+  - enabled: 1
+    path: Assets/Scenes/NECG.unity
+    guid: 378b49256b51b4017a1ae553077c501a
+  - enabled: 1
+    path: Assets/Scenes/TECG.unity
+    guid: 1f9997889e6e846aebef2974588d1749
+  - enabled: 1
+    path: Assets/Scenes/BE1CG.unity
+    guid: 77e1f2706c3a643a9a2e277b287949c8
+  - enabled: 1
+    path: Assets/Scenes/BE2CG.unity
+    guid: 34ad92264091f4e90bdf5c242f0964ae
+  - enabled: 1
+    path: Assets/Scenes/BE3CG.unity
+    guid: 5a1c3536465de4634b821c4e55be78cd
+  - enabled: 1
+    path: Assets/Scenes/BE4CG.unity
+    guid: dadd76725a7fb4df19e3972b1ef2e0bf
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

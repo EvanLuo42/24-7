@@ -7,6 +7,7 @@ using CardSystem.CardEffect.Effect;
 using CardSystem.Data;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // 她说我是流程控制专家
 public class LoopManager : MonoBehaviour
@@ -94,34 +95,34 @@ public class LoopManager : MonoBehaviour
     }
     void PlayHECG()
     {
-        // todo: 播放HE结局CG
+        SceneManager.LoadScene("HECG");
     }
     void PlayNECG()
     {
-        // todo: 播放NE结局CG
+        SceneManager.LoadScene("NECG");
     }
     void PlayTE()
     {
-        // todo: 播放TE结局CG
+        SceneManager.LoadScene("TECG");
     }
     void PlayBE_one_CG()
     {
-        // todo: 播放BE1结局CG
+        SceneManager.LoadScene("BE1CG");
     }
     void PlayBE_two_CG()
     {
-        // todo: 播放BE2结局CG
+        SceneManager.LoadScene("BE2CG");
     }
     void PlayBE_three_CG()
     {
-        // todo: 播放BE3结局CG
+        SceneManager.LoadScene("BE3CG");
     }
     void PlayBE_four_CG()
     {
-        // todo: 播放BE4结局CG
+        SceneManager.LoadScene("BE4CG");
     }
     
-    private int NumOfDays = 0;
+    private int NumOfDays;
 
     // Update is called once per frame
     void Update()
