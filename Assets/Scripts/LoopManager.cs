@@ -7,6 +7,7 @@ using CardSystem.CardEffect.Effect;
 using CardSystem.Data;
 using DG.Tweening;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -50,6 +51,12 @@ public class LoopManager : MonoBehaviour
         // initEffect的补丁，暂时这么写因为不知道在哪改 initEffect
         GameContext.Attributes.SleepingHours = 14;
 
+        StartCoroutine(InitCards());
+    }
+
+    private IEnumerator InitCards()
+    {
+        yield return new WaitForSeconds(0.7f);
         foreach (var effect in startEffects)
         {
             clipboardManager.AddCard(effect);

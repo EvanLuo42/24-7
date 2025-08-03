@@ -519,7 +519,11 @@ MonoBehaviour:
   clipboardManager: {fileID: 1241554830}
   tableManager: {fileID: 427492004}
   turnOperateCount: 0
-  startEffects: []
+  startEffects:
+  - {fileID: 11400000, guid: 9337a80b1f7e64f0f87f1fca610b5eb1, type: 2}
+  - {fileID: 11400000, guid: 9337a80b1f7e64f0f87f1fca610b5eb1, type: 2}
+  - {fileID: 11400000, guid: 45b70304c7a5a45d4a694c29632f12e1, type: 2}
+  - {fileID: 11400000, guid: d06539d65ae0e5e4d92d80012c2c712f, type: 2}
   dayText: {fileID: 332207259}
   sleepingHourText: {fileID: 1457202519}
 --- !u!1 &228949910
