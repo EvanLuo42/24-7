@@ -21,5 +21,8 @@ public class LightController : MonoBehaviour
     {
         var isDay = GameContext.currentPhase == LoopManager.LoopPhase.Day || GameContext.currentPhase == LoopManager.LoopPhase.Dawn;
         _light.enabled = inverse ? !isDay : isDay;
+        
+        _light.color = GameContext.currentPhase == LoopManager.LoopPhase.Dawn ? new Color(0.59f, 0.49f, 0) :
+            Color.white;
     }
 }

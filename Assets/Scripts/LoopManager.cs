@@ -48,9 +48,7 @@ public class LoopManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {            
-        Debug.Log("Productivity:" + GameContext.Attributes.Productivity);
-        Debug.Log("Productivity:" + GameContext.Attributes.Productivity);
+    {
         
         // 偷懒写在这里了
         if (GameContext.currentPhase == LoopPhase.Night)
@@ -90,10 +88,12 @@ public class LoopManager : MonoBehaviour
         OstManager.Instance.Play("Planning");
         
         // 按睡眠时间抽牌
-        tableManager.GenerateObjects(Mathf.FloorToInt(GameContext.Attributes.SleepingHours/4));
+        tableManager.GenerateObjects(Mathf.FloorToInt(GameContext.Attributes.SleepingHours / 4));
+
+        clipboardManager.turnOperateCount = 0;
         
         // 按睡眠时间回精力，一个脱离 Card System 架构的操作，不推荐。
-        float refresh = Mathf.Lerp(0, 100, Mathf.Clamp(GameContext.Attributes.SleepingHours / 8, 0, 1));
+        var refresh = Mathf.Lerp(0, 100, Mathf.Clamp(GameContext.Attributes.SleepingHours / 8, 0, 1));
         GameContext.Attributes.SleepingHours += refresh;
         
         // 按下空格结束Dawn，行动轴锁定，进入 Day

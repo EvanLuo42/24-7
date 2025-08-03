@@ -118,3 +118,13 @@ MonoBehaviour:
     cardSprite: {fileID: 21300000, guid: 18711754a2e3a4b248aa3c03b138a0f5, type: 3}
     overrideName: White Monster
     overrideDescription: 
+  - id: White Monster
+    cardEffect: {fileID: 11400000, guid: c9d8fc7eaeea4465f974185fd995f43b, type: 2}
+    cardSprite: {fileID: 21300000, guid: 18711754a2e3a4b248aa3c03b138a0f5, type: 3}
+    overrideName: White Monster
+    overrideDescription: 
+  - id: Work Overload
+    cardEffect: {fileID: 11400000, guid: fb853d5a4fdbc44ccb04889699e6b0f9, type: 2}
+    cardSprite: {fileID: 21300000, guid: 0e62c4d68e1114697be5309096deaebd, type: 3}
+    overrideName: Work Overload
+    overrideDescription: 

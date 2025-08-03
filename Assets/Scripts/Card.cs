@@ -1,3 +1,4 @@
+using System;
 using CardSystem;
 using CardSystem.Data;
 using DG.Tweening;
@@ -119,5 +120,14 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public void Remove()
     {
         _manager.NotifyRemove(GetComponent<ApplyCard>());
+    }
+
+    private void Update()
+    {
+        if (!_manager) return;
+        if (!_manager.dragging || !Input.GetKeyDown(KeyCode.Backspace)) return;
+        if (_manager.turnOperateCount == 1) return;
+        _manager.turnOperateCount++;
+        Remove();
     }
 }

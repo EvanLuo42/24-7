@@ -1,9 +1,13 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CardSystem;
 using CardSystem.CardEffect;
+using CardSystem.Data;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class ClipboardManager : MonoBehaviour
 {
@@ -13,8 +17,14 @@ public class ClipboardManager : MonoBehaviour
     public Cards cardsSo;
     
     [HideInInspector] public bool dragging;
+    public Button basicCardButton;
+
+    public CardEffect goWorkEffect;
+    public GameObject workOverloadPrefab;
     
     private int _lastBestIndex = -1;
+
+    public int turnOperateCount;
 
     private void Start()
     {
@@ -23,6 +33,8 @@ public class ClipboardManager : MonoBehaviour
             var slot = Instantiate(cardSlotPrefab, transform, false).transform;
             CardSlots.Add(slot);
         }
+
+        basicCardButton.onClick.AddListener(OnClickAddBasicCard);
     }
 
     public void NotifyBeginDrag()
@@ -176,6 +188,27 @@ public class ClipboardManager : MonoBehaviour
             c.transform.SetParent(targetSlot, true);
             c.slot = targetSlot;
             c.SnapToSlot();
+        }
+    }
+
+    private void OnClickAddBasicCard()
+    {
+        if (turnOperateCount == 1) return;
+        switch (GameContext.currentPhase)
+        {
+            case LoopManager.LoopPhase.Dawn:
+                AddCard(goWorkEffect);
+                ReorderAllCards();
+                turnOperateCount++;
+                break;
+            case LoopManager.LoopPhase.Day:
+                break;
+            case LoopManager.LoopPhase.Night:
+                FindFirstObjectByType<TableManager>().AddObjectByPrefab(workOverloadPrefab);
+                turnOperateCount++;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 }

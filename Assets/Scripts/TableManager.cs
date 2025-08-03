@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using CardSystem;
 using UnityEngine;
 
@@ -20,4 +21,13 @@ public class TableManager : MonoBehaviour
             count++;
         }
     }
+
+    public void AddObjectByPrefab(GameObject prefab)
+    {
+        foreach (var slot in objectSlots.Where(slot => !slot.GetComponentInChildren<ObjectController>()))
+        {
+            Instantiate(prefab, slot.transform, false);
+            return;
+        }
+    } 
 }
