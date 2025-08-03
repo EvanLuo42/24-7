@@ -39,10 +39,13 @@ public class ClipboardManager : MonoBehaviour
 
     private Transform GetNearestEmptySlot()
     {
+        int i = 0;
         foreach (var slot in CardSlots)
         {
+            i++;
             if (slot.childCount == 0)
             {
+                Debug.Log(slot);
                 return slot;
             }
         }
@@ -194,12 +197,7 @@ public class ClipboardManager : MonoBehaviour
 
     public void AddCardFromObject(GameObject card)
     {
-        foreach (var slot in CardSlots)
-        {
-            if (slot.GetComponentInChildren<Card>()) { return;}
-            Instantiate(card, slot, false);
-            return;
-        }
+        Instantiate(card, GetNearestEmptySlot(), false);
     }
 
     public void InitAddCard(List<GameObject> cardList)

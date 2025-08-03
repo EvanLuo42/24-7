@@ -22,9 +22,18 @@ public class TableManager : MonoBehaviour
             Debug.Log("Random Number:" + randomNumber);
             Debug.Log("Asset Length" + cardsSo.GetRandomRarity()
                 .CardPrefabList.Count());
-            
-            GameObject card = cardsSo.GetRandomRarity()
-                .CardPrefabList[Random.Range(0, cardsSo.GetRandomRarity().CardPrefabList.Count-1)];
+
+            GameObject card;
+            var CardList = cardsSo.GetRandomRarity().CardPrefabList;
+
+            if (CardList.Count == 1)
+            {
+                card = CardList[0];
+            }
+            else
+            {
+                card = CardList[Random.Range(0, cardsSo.GetRandomRarity().CardPrefabList.Count-1)];
+            }
             
             // 从卡片获取物体
             var objectPrefab = card.GetComponent<ApplyCard>().sourceObject;
