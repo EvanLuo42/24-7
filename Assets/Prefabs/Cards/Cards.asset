@@ -12,26 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8242f66bc0ac4016b3aa918c9ee34f77, type: 3}
   m_Name: Cards
   m_EditorClassIdentifier: 
-  cardPrefabs:
-  - {fileID: 3419224641930791905, guid: 7edff26c02b896046be696a196455da0, type: 3}
-  - {fileID: 3419224641930791905, guid: 673e08d6610c7d94ba49e3ec5ecb54cd, type: 3}
-  - {fileID: 3419224641930791905, guid: 385544d8e87cb4600a16fe0de995579d, type: 3}
-  - {fileID: 3419224641930791905, guid: 4011117912acf43b198c937b25820960, type: 3}
-  - {fileID: 3419224641930791905, guid: 921b1c4a40f514a16985a47fe4f02713, type: 3}
-  - {fileID: 3419224641930791905, guid: b18f32498499c4db1ae90a380e1ea26e, type: 3}
-  - {fileID: 3419224641930791905, guid: 4618ff63ad5ef49feb54031e898ae0dd, type: 3}
-  - {fileID: 3419224641930791905, guid: 39e5404d3b4e94ceead87c0cf9472b04, type: 3}
-  - {fileID: 3419224641930791905, guid: 3552d509fd2604a9b97073b06fc94b43, type: 3}
-  - {fileID: 3419224641930791905, guid: 9bd58bb9a975d49ce9ab4edf38267c39, type: 3}
-  - {fileID: 3419224641930791905, guid: cab12d4faa57d4b38856bc6195f9ec19, type: 3}
-  - {fileID: 3419224641930791905, guid: 90d6af0f467044888b3bbb586f6398ce, type: 3}
-  - {fileID: 3419224641930791905, guid: e5d390964e5ef491182b3bbf054468dd, type: 3}
-  - {fileID: 3419224641930791905, guid: 3b24a8c5668e043a286f17bb5a19366c, type: 3}
-  - {fileID: 3419224641930791905, guid: ea3281bee876d4b61ab24fc50cd5ad44, type: 3}
-  - {fileID: 3419224641930791905, guid: 0456d7b66c0a14b3584a31ceec7ff02b, type: 3}
-  - {fileID: 3419224641930791905, guid: 21ec8cdcb220a47f1a62827efd740c49, type: 3}
-  - {fileID: 3419224641930791905, guid: 435d0fde1e6f644968aac6612258aea1, type: 3}
-  - {fileID: 3419224641930791905, guid: 1f0a68cdfc85d47b4bb944cef5f7e40e, type: 3}
-  - {fileID: 3419224641930791905, guid: 0daa28af4e35c4b728551966837505a4, type: 3}
-  - {fileID: 3419224641930791905, guid: 3fba85fed0a624e26931f4cd315b0bdb, type: 3}
-  - {fileID: 3419224641930791905, guid: d853a9efc73a8465d9fd116d4d950658, type: 3}
+  CardConfig:
+  - Possibility: 0.5
+    CardPrefabList: []
+  - Possibility: 0.1
+    CardPrefabList:
+    - {fileID: 3419224641930791905, guid: ea3281bee876d4b61ab24fc50cd5ad44, type: 3}
+    - {fileID: 0}
