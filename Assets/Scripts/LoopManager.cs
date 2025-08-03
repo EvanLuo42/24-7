@@ -6,6 +6,7 @@ using CardSystem;
 using CardSystem.CardEffect.Effect;
 using CardSystem.Data;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,6 +30,9 @@ public class LoopManager : MonoBehaviour
     public List<CardSystem.CardEffect.CardEffect> startEffects;
 
     private AudioSource _audioSource;
+
+    public TextMeshProUGUI dayText;
+    public TextMeshProUGUI sleepingHourText;
 
     // Phase写在 Game Contex里面
     // private LoopPhase _currentPhase;
@@ -127,6 +131,8 @@ public class LoopManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        dayText.text = $"Day {NumOfDays}";
+        sleepingHourText.text = $"Slept \n{GameContext.Attributes.SleepingHours}h";
         if (Mathf.Approximately(GameContext.Attributes.Productivity, 1))
         {
             PlayBE_three_CG();

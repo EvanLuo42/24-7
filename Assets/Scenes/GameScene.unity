@@ -520,6 +520,8 @@ MonoBehaviour:
   tableManager: {fileID: 427492004}
   turnOperateCount: 0
   startEffects: []
+  dayText: {fileID: 332207259}
+  sleepingHourText: {fileID: 1457202519}
 --- !u!1 &228949910
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,81 +764,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 263238239}
   m_CullTransparentMesh: 1
---- !u!1 &263401648
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 263401649}
-  - component: {fileID: 263401651}
-  - component: {fileID: 263401650}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &263401649
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 263401648}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 539218662}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -23.3, y: 0.0000038147}
-  m_SizeDelta: {x: 15, y: 15}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &263401650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 263401648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e4e9c502dffca40fabea9cff81071fd4, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &263401651
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 263401648}
-  m_CullTransparentMesh: 1
 --- !u!1 &281433236
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,8 +966,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000033379, y: 8.1}
-  m_SizeDelta: {x: 54.078, y: 50}
+  m_AnchoredPosition: {x: 0.000025749, y: 8.1}
+  m_SizeDelta: {x: 65.8637, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &332207259
 MonoBehaviour:
@@ -1773,7 +1700,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &539218662
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1788,13 +1715,12 @@ RectTransform:
   m_Children:
   - {fileID: 332207258}
   - {fileID: 1457202518}
-  - {fileID: 263401649}
   m_Father: {fileID: 1339609587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 320.52, y: 146.3}
-  m_SizeDelta: {x: -711.0381, y: -284.7372}
+  m_AnchoredPosition: {x: 320.52, y: 182.02216}
+  m_SizeDelta: {x: -711.0381, y: -356.1815}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &539218663
 MonoBehaviour:
@@ -4472,8 +4398,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 21.6, y: -17.5}
-  m_SizeDelta: {x: 54.078, y: 50}
+  m_AnchoredPosition: {x: 8.9986, y: -11.5}
+  m_SizeDelta: {x: 83.861, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1457202519
 MonoBehaviour:
@@ -4495,10 +4421,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 14h
+  m_text: 'Slept
+
+    14h'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2c5866f8df07c447ca6d946dca5c42ef, type: 2}
-  m_sharedMaterial: {fileID: 6141096496795452926, guid: 2c5866f8df07c447ca6d946dca5c42ef, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d911d022847dd466f8e1bee43c4697d2, type: 2}
+  m_sharedMaterial: {fileID: 3200074834989808740, guid: d911d022847dd466f8e1bee43c4697d2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
