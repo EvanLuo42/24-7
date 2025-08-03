@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using CardSystem;
 using CardSystem.CardEffect.Effect;
 using CardSystem.Data;
@@ -120,19 +121,25 @@ public class LoopManager : MonoBehaviour
 
     private IEnumerator ExecuteCards()
     {
-        foreach (var slot in clipboardManager.CardSlots)
+        var cardsToExecute = clipboardManager.CardSlots
+            .Select(slot => slot.GetComponentInChildren<ApplyCard>())
+            .Where(card => card != null)
+            .ToList();
+
+        foreach (var card in cardsToExecute)
         {
-            var card = slot.GetComponentInChildren<ApplyCard>();
-            if (!card) continue;
             var rect = card.GetComponent<RectTransform>();
             var originalPos = rect.localPosition;
             yield return rect.DOLocalMoveY(originalPos.y + 50f, 0.2f)
                 .SetEase(Ease.OutQuad)
                 .WaitForCompletion();
+
             card.Apply();
             yield return new WaitForSeconds(1f);
+
             var cardController = card.GetComponent<Card>();
             cardController.passed++;
+
             if (cardController.passed < cardController.duration)
             {
                 yield return rect.DOLocalMove(originalPos, 0.2f)
@@ -147,8 +154,11 @@ public class LoopManager : MonoBehaviour
                     .OnComplete(() => cardController.Remove())
                     .WaitForCompletion();
             }
+
+            clipboardManager.ReorderAllCards();
             yield return new WaitForSeconds(1f);
         }
+
         yield return new WaitForSeconds(1f);
         GameContext.currentPhase = LoopPhase.Night;
     }

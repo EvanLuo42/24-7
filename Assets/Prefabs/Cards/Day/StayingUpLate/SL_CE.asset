@@ -18,3 +18,4 @@ MonoBehaviour:
     something mundane is cast aside. Was it important? Probably not.\""
   cardEffectConfig:
   - {fileID: 11400000, guid: 5e4849f12c4884dd795726c42af37171, type: 2}
+  - {fileID: 11400000, guid: 7333674db30a347b8b4611413bb04c58, type: 2}

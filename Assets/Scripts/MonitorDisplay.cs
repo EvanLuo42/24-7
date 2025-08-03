@@ -251,7 +251,7 @@ public class MonitorDisplay : MonoBehaviour
     
     public void DisplayCardInfo(CardEffect cardEffect, int duration = 0)
     {
-        if (cardEffect == null) return;
+        if (!cardEffect) return;
         
         cardNameText.text = GetCardName(cardEffect);
         cardDescriptionText.text = GetCardDescription(cardEffect);

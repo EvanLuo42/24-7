@@ -42,6 +42,7 @@ namespace CardSystem.CardEffect.Effect
                         var card = cards[index];
                         cards.Remove(card);
                         card.Remove();
+                        clipboard.ReorderAllCards();
                     }
                     break;
                 default:

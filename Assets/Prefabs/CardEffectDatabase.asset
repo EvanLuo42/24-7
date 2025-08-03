@@ -25,7 +25,7 @@ MonoBehaviour:
     overrideDescription: 
   - id: Day Dreaming
     cardEffect: {fileID: 11400000, guid: ddb484a1930f947648ad06fdcde98163, type: 2}
-    cardSprite: {fileID: 21300000, guid: 456032e335dfd4164b93f3285ee6a1ce, type: 3}
+    cardSprite: {fileID: 21300000, guid: faf1963e8e99d4274a88b983e2362799, type: 3}
     overrideName: Day Dreaming
     overrideDescription: 
   - id: Slacking Time

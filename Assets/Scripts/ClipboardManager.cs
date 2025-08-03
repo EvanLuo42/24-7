@@ -139,7 +139,9 @@ public class ClipboardManager : MonoBehaviour
     {
         foreach (var slot in CardSlots.Where(slot => !slot.GetComponentInChildren<Card>()))
         {
-            Instantiate(cardsSo.cardPrefabs[Random.Range(0, cardsSo.cardPrefabs.Count)], slot, false);
+            var dayCards = cardsSo.cardPrefabs.Where(obj => obj.GetComponentInChildren<Card>().day).ToList();
+            Instantiate(dayCards[Random.Range(0, dayCards.Count)], slot, false);
+            return;
         }
     }
 
@@ -155,6 +157,23 @@ public class ClipboardManager : MonoBehaviour
                 dayCard.transform.DOLocalMoveY(0, 0.3f);
                 return;
             }
+        }
+    }
+    
+    public void ReorderAllCards()
+    {
+        var cards = CardSlots
+            .Select(slot => slot.GetComponentInChildren<Card>())
+            .Where(c => c)
+            .ToList();
+
+        for (var i = 0; i < cards.Count && i < CardSlots.Count; i++)
+        {
+            var targetSlot = CardSlots[i];
+            var c = cards[i];
+            c.transform.SetParent(targetSlot, true);
+            c.slot = targetSlot;
+            c.SnapToSlot();
         }
     }
 }

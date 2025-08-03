@@ -21,6 +21,8 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public int duration;
     public int passed;
 
+    public bool day;
+
     private void Start()
     {
         _rect = GetComponent<RectTransform>();

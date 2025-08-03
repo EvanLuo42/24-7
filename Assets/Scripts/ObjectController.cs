@@ -97,9 +97,18 @@ public class ObjectController : MonoBehaviour
         
         // Display card info on monitor
         var monitorDisplay = FindFirstObjectByType<MonitorDisplay>();
-        if (monitorDisplay != null && dayCardEffect != null)
+        if (!monitorDisplay) return;
+        switch (GameContext.currentPhase)
         {
-            monitorDisplay.DisplayCardInfo(dayCardEffect);
+            case LoopManager.LoopPhase.Dawn:
+            case LoopManager.LoopPhase.Day:
+                monitorDisplay.DisplayCardInfo(dayCardEffect);
+                break;
+            case LoopManager.LoopPhase.Night:
+                monitorDisplay.DisplayCardInfo(nightCardEffect);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 

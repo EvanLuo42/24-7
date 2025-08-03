@@ -96,6 +96,7 @@ MonoBehaviour:
   slot: {fileID: 0}
   duration: 3
   passed: 0
+  day: 1
 --- !u!225 &3728925954611466903
 CanvasGroup:
   m_ObjectHideFlags: 0
