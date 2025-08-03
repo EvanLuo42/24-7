@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f124f36580e6cc541805aa0559135cc9, type: 3}
   m_Name: P-E-
   m_EditorClassIdentifier: 
+  LuckyAttributeChangeConfigs: []
   attributeChangeConfigs:
-  - attributeToChange: 0
+  - attributeToOperate: 0
     operationToDo: 1
-    value: 0.04
-  - attributeToChange: 1
+    value: 0.06
+  - attributeToOperate: 1
     operationToDo: 1
-    value: 0.04
-  - attributeToChange: 4
-    operationToDo: 0
+    value: 0.075
+  - attributeToOperate: 4
+    operationToDo: 2
     value: 1.25

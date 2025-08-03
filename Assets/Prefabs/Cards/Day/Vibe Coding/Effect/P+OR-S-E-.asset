@@ -17,11 +17,11 @@ MonoBehaviour:
     AttributeOperationIfLucky:
       attributeToOperate: 0
       operationToDo: 0
-      value: 0.5
+      value: 0.04
     AttributeOperationElse:
       attributeToOperate: 0
       operationToDo: 1
-      value: 0.5
+      value: 0.04
   attributeChangeConfigs:
   - attributeToOperate: 2
     operationToDo: 1

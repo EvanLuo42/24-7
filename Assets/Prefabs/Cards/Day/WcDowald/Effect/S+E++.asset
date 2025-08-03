@@ -17,6 +17,6 @@ MonoBehaviour:
   - attributeToOperate: 2
     operationToDo: 0
     value: 0.04
-  - attributeToOperate: 2
+  - attributeToOperate: 1
     operationToDo: 0
     value: 0.15

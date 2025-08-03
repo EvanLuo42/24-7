@@ -19,7 +19,7 @@ MonoBehaviour:
       operationToDo: 0
       value: 0.01
     AttributeOperationElse:
-      attributeToOperate: 0
+      attributeToOperate: 3
       operationToDo: 0
       value: 0
   attributeChangeConfigs:

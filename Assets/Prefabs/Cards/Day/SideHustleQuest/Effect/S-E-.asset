@@ -15,7 +15,7 @@ MonoBehaviour:
   LuckyAttributeChangeConfigs: []
   attributeChangeConfigs:
   - attributeToOperate: 2
-    operationToDo: 0
+    operationToDo: 1
     value: 0.02
   - attributeToOperate: 1
     operationToDo: 1
