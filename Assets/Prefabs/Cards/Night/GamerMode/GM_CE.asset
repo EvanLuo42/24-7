@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487f5b2b70a2a56499af91109903cb16, type: 3}
   m_Name: GM_CE
   m_EditorClassIdentifier: 
-  cardName: Chill With Friends
-  cardDescription: "Stress randomly +/- (50%)\nEnergy -\nCooking +\n\n\"Socializing:
-    sometimes it's comfort, sometimes chaos. At least the food\u2019s consistently
-    good.\u201D"
+  cardName: Gamer Mode
+  cardDescription: "Energy randomly -/- - (50%)\r\nStress randomly -/- - (50%) \r\n\r\n\"Let\u2019s
+    have some fun! Leave yourself inside the virtual world and forget everything
+    you felt stressful and unhappy with.\u201D"
   cardEffectConfig:
   - {fileID: 11400000, guid: 9ab80685cd71a9446916797ac43d725e, type: 2}
