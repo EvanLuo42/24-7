@@ -39,11 +39,19 @@ public class LoopManager : MonoBehaviour
         initEffect.ApplyEffect();
         // initEffect的补丁，暂时这么写因为不知道在哪改 initEffect
         GameContext.Attributes.SleepingHours = 14;
+        
+        for (var i = 0; i < 6; i++)
+        {
+            clipboardManager.AddRandomCard();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {            
+        Debug.Log("Productivity:" + GameContext.Attributes.Productivity);
+        Debug.Log("Productivity:" + GameContext.Attributes.Productivity);
+        
         // 偷懒写在这里了
         if (GameContext.currentPhase == LoopPhase.Night)
         {
@@ -81,20 +89,12 @@ public class LoopManager : MonoBehaviour
         // bgm
         OstManager.Instance.Play("Planning");
         
-        Debug.Log("TimeSlept:" + GameContext.Attributes.SleepingHours);
-        Debug.Log("Cards Drawn" + Mathf.FloorToInt(GameContext.Attributes.SleepingHours/4));
-        
         // 按睡眠时间抽牌
         tableManager.GenerateObjects(Mathf.FloorToInt(GameContext.Attributes.SleepingHours/4));
-        for (var i = 0; i < 6; i++)
-        {
-            clipboardManager.AddRandomCard();
-        }
         
         // 按睡眠时间回精力，一个脱离 Card System 架构的操作，不推荐。
         float refresh = Mathf.Lerp(0, 100, Mathf.Clamp(GameContext.Attributes.SleepingHours / 8, 0, 1));
         GameContext.Attributes.SleepingHours += refresh;
-        Debug.Log("Refresh:" + refresh);
         
         // 按下空格结束Dawn，行动轴锁定，进入 Day
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -122,7 +122,7 @@ public class LoopManager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         GameContext.currentPhase = LoopPhase.Dawn;
     }
-
+    
     private IEnumerator ExecuteCards()
     {
         var cardsToExecute = clipboardManager.CardSlots
@@ -132,6 +132,8 @@ public class LoopManager : MonoBehaviour
 
         foreach (var card in cardsToExecute)
         {
+            if (!card) {continue;}
+            print(card.name);
             var rect = card.GetComponent<RectTransform>();
             var originalPos = rect.localPosition;
             yield return rect.DOLocalMoveY(originalPos.y + 50f, 0.2f)

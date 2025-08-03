@@ -8,7 +8,7 @@ namespace CardSystem.Data
     
         public float Productivity
         {
-            set => _productivity = Mathf.Clamp(value, 0, 100);
+            set => _productivity = Mathf.Clamp(value, 0, 1);
             get => _productivity;
         }
 
