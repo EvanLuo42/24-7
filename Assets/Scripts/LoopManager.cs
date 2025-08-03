@@ -156,6 +156,12 @@ public class LoopManager : MonoBehaviour
                 PlayNECG();
             }
         }
+        
+        // 压力达到100%时触发高压力结局
+        if (Mathf.Approximately(GameContext.Attributes.Stress, 1f))
+        {
+            PlayBE_two_CG();
+        }
             
         // 偷懒写在这里了
         if (GameContext.currentPhase == LoopPhase.Night)
