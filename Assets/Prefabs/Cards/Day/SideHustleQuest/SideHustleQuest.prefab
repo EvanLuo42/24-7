@@ -121,4 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951af37604d2496418e15b0a8c7f0cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourceObject: {fileID: 1887263134942254465, guid: 8394dd69f19b64690ae4571419190478, type: 3}
   cardEffect: {fileID: 11400000, guid: 4571215f8c33140efa3bb1e1b8fcdc02, type: 2}
