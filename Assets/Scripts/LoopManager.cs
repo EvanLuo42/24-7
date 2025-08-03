@@ -86,11 +86,15 @@ public class LoopManager : MonoBehaviour
         
         // 按睡眠时间抽牌
         tableManager.GenerateObjects(Mathf.FloorToInt(GameContext.Attributes.SleepingHours/4));
+        for (var i = 0; i < 6; i++)
+        {
+            clipboardManager.AddRandomCard();
+        }
         
         // 按睡眠时间回精力，一个脱离 Card System 架构的操作，不推荐。
-        float Refresh = Mathf.Lerp(0, 100, Mathf.Clamp(GameContext.Attributes.SleepingHours / 8, 0, 1));
-        GameContext.Attributes.SleepingHours += Refresh;
-        Debug.Log("Refresh:" + Refresh);
+        float refresh = Mathf.Lerp(0, 100, Mathf.Clamp(GameContext.Attributes.SleepingHours / 8, 0, 1));
+        GameContext.Attributes.SleepingHours += refresh;
+        Debug.Log("Refresh:" + refresh);
         
         // 按下空格结束Dawn，行动轴锁定，进入 Day
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));

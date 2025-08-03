@@ -1,4 +1,5 @@
 using CardSystem;
+using CardSystem.Data;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -74,6 +75,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (GameContext.currentPhase != LoopManager.LoopPhase.Dawn) return;
         transform.DOScale(1f, animTime);
         transform.SetParent(canvas.transform, true);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -89,6 +91,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (GameContext.currentPhase != LoopManager.LoopPhase.Dawn) return;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvas.transform as RectTransform,
             eventData.position,
@@ -102,6 +105,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (GameContext.currentPhase != LoopManager.LoopPhase.Dawn) return;
         _manager.NotifyEndDrag(this);
         transform.SetParent(slot, true);
         SnapToSlot();
