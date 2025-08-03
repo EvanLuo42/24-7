@@ -124,10 +124,11 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     private void Update()
     {
-        if (!_manager) return;
+        var loopManager = FindFirstObjectByType<LoopManager>();
+        if (!loopManager) return;
         if (!_manager.dragging || !Input.GetKeyDown(KeyCode.Backspace)) return;
-        if (_manager.turnOperateCount == 1) return;
-        _manager.turnOperateCount++;
+        if (loopManager.turnOperateCount == 1) return;
+        loopManager.turnOperateCount++;
         Remove();
     }
 }
