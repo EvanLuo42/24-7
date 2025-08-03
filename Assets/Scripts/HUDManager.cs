@@ -1,3 +1,4 @@
+using System;
 using CardSystem.Data;
 using TMPro;
 using UnityEngine;
@@ -40,10 +41,10 @@ public class HUDManager : MonoBehaviour
 
     private void Update()
     {
-        _projectProgressNumber.text = $"{GameContext.Attributes.Productivity * 100f}%";
-        _stressNumber.text = $"{GameContext.Attributes.Stress * 100f}%";
-        _energyNumber.text = $"{GameContext.Attributes.Energy * 100f}%";
-        _passionNumber.text = $"{GameContext.Attributes.Cook * 100f}%";
+        _projectProgressNumber.text = $"{Math.Round(GameContext.Attributes.Productivity * 100f, 1)}%";
+        _stressNumber.text = $"{Math.Round(GameContext.Attributes.Stress * 100f, 1)}%";
+        _energyNumber.text = $"{Math.Round(GameContext.Attributes.Energy * 100f, 1)}%";
+        _passionNumber.text = $"{Math.Round(GameContext.Attributes.Cook * 100f, 1)}%";
 
         _projectProgressBar.value = GameContext.Attributes.Productivity / 1f;
         _stressProgressBar.value = GameContext.Attributes.Stress / 1f;
