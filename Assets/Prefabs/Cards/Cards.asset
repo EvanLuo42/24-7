@@ -13,9 +13,22 @@ MonoBehaviour:
   m_Name: Cards
   m_EditorClassIdentifier: 
   CardConfig:
-  - Possibility: 0.5
-    CardPrefabList: []
-  - Possibility: 0.1
+  - Possibility: 0.4372
     CardPrefabList:
-    - {fileID: 3419224641930791905, guid: ea3281bee876d4b61ab24fc50cd5ad44, type: 3}
-    - {fileID: 0}
+    - {fileID: 3419224641930791905, guid: cab12d4faa57d4b38856bc6195f9ec19, type: 3}
+    - {fileID: 3419224641930791905, guid: b18f32498499c4db1ae90a380e1ea26e, type: 3}
+    - {fileID: 3419224641930791905, guid: 39e5404d3b4e94ceead87c0cf9472b04, type: 3}
+  - Possibility: 0.3075
+    CardPrefabList:
+    - {fileID: 3419224641930791905, guid: 7edff26c02b896046be696a196455da0, type: 3}
+    - {fileID: 3419224641930791905, guid: 4011117912acf43b198c937b25820960, type: 3}
+    - {fileID: 3419224641930791905, guid: 4618ff63ad5ef49feb54031e898ae0dd, type: 3}
+  - Possibility: 0.2029
+    CardPrefabList:
+    - {fileID: 3419224641930791905, guid: 9bd58bb9a975d49ce9ab4edf38267c39, type: 3}
+    - {fileID: 3419224641930791905, guid: 921b1c4a40f514a16985a47fe4f02713, type: 3}
+    - {fileID: 3419224641930791905, guid: 385544d8e87cb4600a16fe0de995579d, type: 3}
+    - {fileID: 3419224641930791905, guid: 3552d509fd2604a9b97073b06fc94b43, type: 3}
+  - Possibility: 0.0524
+    CardPrefabList:
+    - {fileID: 3419224641930791905, guid: 673e08d6610c7d94ba49e3ec5ecb54cd, type: 3}
