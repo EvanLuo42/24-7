@@ -34,23 +34,16 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            Remove();
-        }
         if (_manager.dragging) return;
         transform.DOScale(hoverScale, animTime);
         SfxManager.Instance.Play("Hover Card");
         
-        // Display card info on monitor
         var applyCard = GetComponent<ApplyCard>();
-        if (applyCard != null && applyCard.cardEffect != null)
+        if (!applyCard || !applyCard.cardEffect) return;
+        var monitorDisplay = FindFirstObjectByType<MonitorDisplay>();
+        if (monitorDisplay)
         {
-            var monitorDisplay = FindFirstObjectByType<MonitorDisplay>();
-            if (monitorDisplay != null)
-            {
-                monitorDisplay.DisplayCardInfo(applyCard.cardEffect, duration);
-            }
+            monitorDisplay.DisplayCardInfo(applyCard.cardEffect, duration);
         }
     }
 
@@ -61,7 +54,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         
         // Hide card info when mouse leaves the card
         var monitorDisplay = FindFirstObjectByType<MonitorDisplay>();
-        if (monitorDisplay != null)
+        if (monitorDisplay)
         {
             monitorDisplay.HideCardInfo();
         }
