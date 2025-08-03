@@ -41,7 +41,7 @@ public class HUDManager : MonoBehaviour
 
     private void Update()
     {
-        _projectProgressNumber.text = $"{Math.Round(GameContext.Attributes.Productivity * 100f, 4)}%";
+        _projectProgressNumber.text = $"{Math.Round(GameContext.Attributes.Productivity * 100f, 3)}%";
         _stressNumber.text = $"{Math.Round(GameContext.Attributes.Stress * 100f)}%";
         _energyNumber.text = $"{Math.Round(GameContext.Attributes.Energy * 100f)}%";
         _passionNumber.text = $"{Math.Round(GameContext.Attributes.Cook * 100f)}%";
