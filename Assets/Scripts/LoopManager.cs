@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using CardSystem;
 using CardSystem.CardEffect.Effect;
 using CardSystem.Data;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 // 她说我是流程控制专家
 public class LoopManager : MonoBehaviour
@@ -21,6 +23,7 @@ public class LoopManager : MonoBehaviour
     public BaseEffect initEffect;
     public ClipboardManager clipboardManager;
     public TableManager tableManager;
+    public List<GameObject> cardsToStartWith;
     
     public int turnOperateCount;
 
@@ -41,19 +44,31 @@ public class LoopManager : MonoBehaviour
         initEffect.ApplyEffect();
         // initEffect的补丁，暂时这么写因为不知道在哪改 initEffect
         GameContext.Attributes.SleepingHours = 14;
+        StartCoroutine(LateStart());
+    }
+    private IEnumerator LateStart()
+    {
+        // 等待所有其他 Start()先执行完
+        yield return null;
         
-        for (var i = 0; i < 6; i++)
-        {
-            clipboardManager.AddRandomCard();
-        }
+        // “LateStart”逻辑
+        // 初始化加卡
+        clipboardManager.InitAddCard(cardsToStartWith);
     }
 
+    void IfEndDetection()
+    {
+        if (Mathf.Approximately(GameContext.Attributes.Productivity, 1))
+        {
+            // 播放赢麻了CG
+        }
+    }
+    
     // Update is called once per frame
     void Update()
-    {            
-        Debug.Log("Productivity:" + GameContext.Attributes.Productivity);
-        Debug.Log("Productivity:" + GameContext.Attributes.Productivity);
-        
+    {
+        IfEndDetection();
+            
         // 偷懒写在这里了
         if (GameContext.currentPhase == LoopPhase.Night)
         {
@@ -64,7 +79,6 @@ public class LoopManager : MonoBehaviour
             }
         }
 
-        Debug.Log(GameContext.currentPhase);
         // 状态无改变则返回
         if (GameContext.currentPhase == GameContext.lastPhase){return;}
         
@@ -148,6 +162,7 @@ public class LoopManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             var cardController = card.GetComponent<Card>();
+            if (!cardController) {continue;}
             cardController.passed++;
 
             if (cardController.passed < cardController.duration)

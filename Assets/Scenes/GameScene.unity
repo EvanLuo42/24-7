@@ -786,6 +786,12 @@ MonoBehaviour:
   clipboardManager: {fileID: 1241554830}
   tableManager: {fileID: 427492004}
   turnOperateCount: 0
+  cardsToStartWith:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 3419224641930791905, guid: 3552d509fd2604a9b97073b06fc94b43, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &261037019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,7 +1265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce97154e333e4a799d8fe306ffa6c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsSo: {fileID: 11400000, guid: ac3619b4355474ee6a049697f8c18a77, type: 2}
+  cardsSo: {fileID: 0}
   objectSlots:
   - {fileID: 121156141}
   - {fileID: 1697432761}

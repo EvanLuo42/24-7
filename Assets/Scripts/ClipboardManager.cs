@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CardSystem;
 using CardSystem.CardEffect;
 using CardSystem.Data;
 using DG.Tweening;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class ClipboardManager : MonoBehaviour
@@ -172,6 +175,14 @@ public class ClipboardManager : MonoBehaviour
                     return;
                 }
             }
+        }
+    }
+
+    public void InitAddCard(List<GameObject> cardList)
+    {
+        for (int i = 0; i < cardList.Count ; i++)
+        {
+            Instantiate(cardList[i], CardSlots[i], false);
         }
     }
     

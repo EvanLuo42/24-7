@@ -44,7 +44,7 @@ public class ObjectController : MonoBehaviour
                     {
                         var clipboard = FindFirstObjectByType<ClipboardManager>();
                 
-                        clipboard.AddCard(dayCardEffect);
+                        clipboard.AddCardFromEffect(dayCardEffect);
                 
                         Destroy(gameObject);
                     });

@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class TableManager : MonoBehaviour
 {
-    public Objects objectsSo; 
+    public Cards cardsSo;
+
 
     public List<GameObject> objectSlots = new();
 
@@ -16,9 +17,13 @@ public class TableManager : MonoBehaviour
         {
             if (count == amount) return;
             if (slot.GetComponentInChildren<ObjectController>()) continue;
+
+            GameObject Card = cardsSo.GetRandomRarity()
+                .CardPrefabList[Random.Range(0, cardsSo.GetRandomRarity().CardPrefabList.Count-1)];
             
-            // 根据稀有度加卡
-            var objectPrefab = objectsSo.objectPrefabs[Random.Range(0, objectsSo.objectPrefabs.Count)];
+            // 从卡片获取物体
+            var objectPrefab = Card.GetComponent<ApplyCard>().sourceObject;
+            
             Instantiate(objectPrefab, slot.transform, false);
             count++;
         }
