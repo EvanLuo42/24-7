@@ -277,6 +277,7 @@ public class LoopManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
+        GameContext.Attributes.SleepingHours = 14f;
         GameContext.currentPhase = LoopPhase.Night;
     }
 }
