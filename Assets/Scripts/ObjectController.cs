@@ -3,11 +3,13 @@ using CardSystem.CardEffect;
 using CardSystem.Data;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ObjectController : MonoBehaviour
 {
     public CardEffect dayCardEffect;
     public CardEffect nightCardEffect;
+    public GameObject card;
     
     private MeshRenderer _meshRenderer;
     
@@ -29,7 +31,6 @@ public class ObjectController : MonoBehaviour
     {
         if (_deleting) return;
         SfxManager.Instance.Play("Click Object");
-        // 何尝不算一种 NTR
         switch (GameContext.currentPhase)
         {
             case LoopManager.LoopPhase.Dawn:
@@ -38,19 +39,19 @@ public class ObjectController : MonoBehaviour
                 transform.DOKill();
                 _deleting = true;
                 loopManager.turnOperateCount++;
-                _meshRenderer.material
-                    .DOFade(0f, 0.5f)
-                    .OnComplete(() =>
+                _meshRenderer.material.DOFade(0f, 0.5f).OnComplete(() =>
                     {
                         var clipboard = FindFirstObjectByType<ClipboardManager>();
                 
-                        clipboard.AddCardFromEffect(dayCardEffect);
+                        clipboard.AddCardFromObject(card);
                 
                         Destroy(gameObject);
                     });
                 break;
+            
             case LoopManager.LoopPhase.Day:
                 break;
+            
             case LoopManager.LoopPhase.Night:
                 _isDragging = true;
                 _dragDepth = Vector3.Distance(Camera.main!.transform.position, transform.position);

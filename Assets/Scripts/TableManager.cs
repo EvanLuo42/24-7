@@ -18,11 +18,16 @@ public class TableManager : MonoBehaviour
             if (count == amount) return;
             if (slot.GetComponentInChildren<ObjectController>()) continue;
 
-            GameObject Card = cardsSo.GetRandomRarity()
+            float randomNumber = Random.Range(0, cardsSo.GetRandomRarity().CardPrefabList.Count - 1);
+            Debug.Log("Random Number:" + randomNumber);
+            Debug.Log("Asset Length" + cardsSo.GetRandomRarity()
+                .CardPrefabList.Count());
+            
+            GameObject card = cardsSo.GetRandomRarity()
                 .CardPrefabList[Random.Range(0, cardsSo.GetRandomRarity().CardPrefabList.Count-1)];
             
             // 从卡片获取物体
-            var objectPrefab = Card.GetComponent<ApplyCard>().sourceObject;
+            var objectPrefab = card.GetComponent<ApplyCard>().sourceObject;
             
             Instantiate(objectPrefab, slot.transform, false);
             count++;

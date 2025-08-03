@@ -56,18 +56,100 @@ public class LoopManager : MonoBehaviour
         clipboardManager.InitAddCard(cardsToStartWith);
     }
 
-    void IfEndDetection()
+    private void TimeOut()
     {
-        if (Mathf.Approximately(GameContext.Attributes.Productivity, 1))
+        // 等待所有其他 Start()先执行完
+        
+        if (GameContext.Attributes.Cook >= 0.1 && GameContext.Attributes.Stress < 60)
         {
-            // 播放赢麻了CG
+            PlayTE();
+        }
+        else
+        {
+            
+            if (GameContext.Attributes.Productivity >= 0.9)
+            {
+                if (GameContext.Attributes.Stress <= 0.6)
+                {
+                    PlayHECG();
+                }
+                else
+                {
+                    PlayBE_one_CG();
+                }
+            }
+            else
+            {
+                if (GameContext.Attributes.Stress >= 0.6)
+                {
+                    PlayBE_two_CG();
+                }
+                else
+                {
+                    if(GameContext.Attributes.Energy <= 0.05)
+                    {
+                        PlayBE_four_CG();
+                    }
+                    else
+                    {
+                        PlayNECG();
+                    }
+                }
+            }
         }
     }
+    void PlayHECG()
+    {
+        // todo: 播放HE结局CG
+    }
+    void PlayNECG()
+    {
+        // todo: 播放NE结局CG
+    }
+    void PlayTE()
+    {
+        // todo: 播放TE结局CG
+    }
+    void PlayBE_one_CG()
+    {
+        // todo: 播放BE1结局CG
+    }
+    void PlayBE_two_CG()
+    {
+        // todo: 播放BE2结局CG
+    }
+    void PlayBE_three_CG()
+    {
+        // todo: 播放BE3结局CG
+    }
+    void PlayBE_four_CG()
+    {
+        // todo: 播放BE4结局CG
+    }
     
+
+    
+
+    private int NumOfDays = 0;
     // Update is called once per frame
     void Update()
     {
-        IfEndDetection();
+        if (Mathf.Approximately(GameContext.Attributes.Productivity, 1))
+        {
+            PlayBE_three_CG();
+        }
+        
+        if (Mathf.Approximately(GameContext.Attributes.Productivity, 1))
+        {
+            if (GameContext.Attributes.Stress <= 0.6)
+            {
+                PlayHECG();
+            }
+            else
+            {
+                PlayNECG();
+            }
+        }
             
         // 偷懒写在这里了
         if (GameContext.currentPhase == LoopPhase.Night)
@@ -86,6 +168,11 @@ public class LoopManager : MonoBehaviour
         switch (GameContext.currentPhase)
         {
             case LoopPhase.Dawn:
+                NumOfDays++;
+                if (NumOfDays >= 30)
+                {
+                    TimeOut();
+                }
                 StartCoroutine(Dawn());
                 break;
             case LoopPhase.Day:

@@ -21,7 +21,7 @@ public class ClipboardManager : MonoBehaviour
     [HideInInspector] public bool dragging;
     public Button basicCardButton;
 
-    public CardEffect goWorkEffect;
+    public GameObject Hajimi;
     public GameObject workOverloadPrefab;
     
     private int _lastBestIndex = -1;
@@ -37,6 +37,19 @@ public class ClipboardManager : MonoBehaviour
         basicCardButton.onClick.AddListener(OnClickAddBasicCard);
     }
 
+    private Transform GetNearestEmptySlot()
+    {
+        foreach (var slot in CardSlots)
+        {
+            if (slot.childCount == 0)
+            {
+                return slot;
+            }
+        }
+        // 如果所有卡槽都被占用，返回 null
+        return null;
+    }
+    
     public void NotifyBeginDrag()
     {
         dragging = true;
@@ -159,8 +172,8 @@ public class ClipboardManager : MonoBehaviour
             return;
         }
     }
-
-    public void AddCard(CardEffect dayCardEffect)
+    
+    public void AddCardFromEffect(CardEffect dayCardEffect)
     {
         foreach (var slot in CardSlots.Where(slot => !slot.GetComponentInChildren<Card>()))
         {
@@ -168,6 +181,7 @@ public class ClipboardManager : MonoBehaviour
             {
                 foreach (var cardPrefab in rarityCardList.CardPrefabList.Where(cardPrefab => cardPrefab.GetComponent<ApplyCard>().cardEffect == dayCardEffect))
                 {
+                    Debug.Log("True found");
                     var dayCard = Instantiate(cardPrefab, slot, false);
                     var dayLocalPos = dayCard.transform.localPosition;
                     dayCard.transform.localPosition = new Vector3(dayLocalPos.x, dayLocalPos.y - 30f, 0);
@@ -175,6 +189,16 @@ public class ClipboardManager : MonoBehaviour
                     return;
                 }
             }
+        }
+    }
+
+    public void AddCardFromObject(GameObject card)
+    {
+        foreach (var slot in CardSlots)
+        {
+            if (slot.GetComponentInChildren<Card>()) { return;}
+            Instantiate(card, slot, false);
+            return;
         }
     }
 
@@ -210,10 +234,12 @@ public class ClipboardManager : MonoBehaviour
         switch (GameContext.currentPhase)
         {
             case LoopManager.LoopPhase.Dawn:
-                AddCard(goWorkEffect);
+                Debug.Log("Click");
+                AddCardFromObject(Hajimi);
                 ReorderAllCards();
                 manager.turnOperateCount++;
                 break;
+            
             case LoopManager.LoopPhase.Day:
                 break;
             case LoopManager.LoopPhase.Night:
