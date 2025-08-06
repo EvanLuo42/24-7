@@ -94,7 +94,7 @@ MonoBehaviour:
   hoverScale: 1.05
   animTime: 0.2
   slot: {fileID: 0}
-  duration: 1
+  duration: 999
   passed: 0
   day: 0
 --- !u!225 &3728925954611466903

@@ -36,7 +36,7 @@ public class TitleManager : MonoBehaviour
     
     private void OnClickItch()
     {
-        Application.OpenURL("https://itch.io");
+        Application.OpenURL("https://n3xta.itch.io/247");
     }
     
     private void OnClickX()

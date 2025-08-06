@@ -18,6 +18,7 @@ MonoBehaviour:
     - {fileID: 3419224641930791905, guid: cab12d4faa57d4b38856bc6195f9ec19, type: 3}
     - {fileID: 3419224641930791905, guid: b18f32498499c4db1ae90a380e1ea26e, type: 3}
     - {fileID: 3419224641930791905, guid: 39e5404d3b4e94ceead87c0cf9472b04, type: 3}
+    - {fileID: 3419224641930791905, guid: 3fba85fed0a624e26931f4cd315b0bdb, type: 3}
   - Possibility: 0.3075
     CardPrefabList:
     - {fileID: 3419224641930791905, guid: 7edff26c02b896046be696a196455da0, type: 3}

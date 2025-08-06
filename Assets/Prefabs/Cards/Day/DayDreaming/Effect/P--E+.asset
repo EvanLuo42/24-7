@@ -16,7 +16,7 @@ MonoBehaviour:
   attributeChangeConfigs:
   - attributeToOperate: 0
     operationToDo: 1
-    value: 0.1
+    value: 0.08
   - attributeToOperate: 1
     operationToDo: 1
     value: 0.075

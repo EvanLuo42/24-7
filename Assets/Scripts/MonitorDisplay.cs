@@ -4,6 +4,7 @@ using CardSystem;
 using CardSystem.CardEffect;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MonitorDisplay : MonoBehaviour
 {
@@ -13,9 +14,13 @@ public class MonitorDisplay : MonoBehaviour
     [Header("UI Elements")]
     public Canvas monitorCanvas;
     public Image cardImage;
-    public Text cardNameText;
-    public Text cardDescriptionText;
-    
+    public TextMeshProUGUI cardNameText;
+    public TextMeshProUGUI cardDescriptionText;
+
+    public TMP_FontAsset boldFont;
+    public TMP_FontAsset normalFont;
+
+
     [Header("Card Sprites")]
     public Sprite codeRefactoringSprite;
     public Sprite lockTfInSprite;
@@ -160,7 +165,7 @@ public class MonitorDisplay : MonoBehaviour
         panel.transform.SetParent(canvasObj.transform, false);
         
         Image panelImage = panel.AddComponent<Image>();
-        panelImage.color = new Color(1.0f, 0.0f, 0.0f, 0.8f); // Red with transparency
+        panelImage.color = Color.black;
         
         RectTransform panelRect = panel.GetComponent<RectTransform>();
         // Fill the entire canvas area
@@ -174,11 +179,11 @@ public class MonitorDisplay : MonoBehaviour
         _imageRect = cardImage.GetComponent<RectTransform>();
         
         // Create card name text
-        cardNameText = CreateTextElement("CardName", panel.transform, "Card Name", 36, Color.white);
+        cardNameText = CreateTextElement("CardName", boldFont, panel.transform, "Card Name", 36, Color.white);
         _nameRect = cardNameText.GetComponent<RectTransform>();
         
         // Create card description text 
-        cardDescriptionText = CreateTextElement("CardDescription", panel.transform, "Card Description", 24, Color.white);
+        cardDescriptionText = CreateTextElement("CardDescription", normalFont, panel.transform, "Card Description", 16, Color.white);
         _descRect = cardDescriptionText.GetComponent<RectTransform>();
         
         // Apply initial positioning
@@ -220,35 +225,29 @@ public class MonitorDisplay : MonoBehaviour
         
         return image;
     }
-    
-    private Text CreateTextElement(string name, Transform parent, string defaultText, int fontSize, Color color)
+
+    private TextMeshProUGUI CreateTextElement(string name, TMP_FontAsset fontAsset, Transform parent, string defaultText, int fontSize, Color color)
     {
         GameObject textObj = new GameObject(name);
         textObj.transform.SetParent(parent, false);
-        
-        Text text = textObj.AddComponent<Text>();
+
+        TextMeshProUGUI text = textObj.AddComponent<TextMeshProUGUI>();
         text.text = defaultText;
-        
-        // Try to get a built-in font that actually works
-        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        if (text.font == null)
-        {
-            text.font = Resources.FindObjectsOfTypeAll<Font>().FirstOrDefault();
-        }
-        
+
+        text.font = fontAsset;
         text.fontSize = fontSize;
         text.color = color;
-        text.alignment = TextAnchor.MiddleCenter;
-        text.horizontalOverflow = HorizontalWrapMode.Wrap;
-        text.verticalOverflow = VerticalWrapMode.Truncate;
-        
+        text.alignment = TextAlignmentOptions.MidlineLeft;
+        text.textWrappingMode = TextWrappingModes.Normal;
+        text.overflowMode = TextOverflowModes.Truncate;
+
         RectTransform rect = text.GetComponent<RectTransform>();
         rect.offsetMin = Vector2.zero;
         rect.offsetMax = Vector2.zero;
-        
+
         return text;
     }
-    
+
     public void DisplayCardInfo(CardEffect cardEffect, int duration = 0)
     {
         if (!cardEffect) return;

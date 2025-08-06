@@ -110,7 +110,7 @@ public class ClipboardManager : MonoBehaviour
             .Where(c => c && c != card)
             .ToList();
         
-        var insertIndex = 0;
+        int insertIndex;
         
         if (_lastBestIndex >= 0)
         {
@@ -226,7 +226,7 @@ public class ClipboardManager : MonoBehaviour
     }
 
     private void OnClickAddBasicCard()
-    {
+    { 
         var manager = FindFirstObjectByType<LoopManager>();
         if (manager.turnOperateCount == 1) return;
         switch (GameContext.currentPhase)
