@@ -23,7 +23,8 @@ N426
 
 <img width="397" height="223" alt="image" src="https://github.com/user-attachments/assets/7ed82945-fa2d-4958-93df-bbe43333cb2b" />&nbsp;&nbsp;&nbsp;<img width="397" height="223" alt="image" src="https://github.com/user-attachments/assets/f39578b2-d1ee-4ee5-b2a4-bd6a2bb444dd" />
 <img width="397" height="223" alt="image" src="https://github.com/user-attachments/assets/12cd8a41-2deb-49d6-ba71-a611a0af099f" />&nbsp;&nbsp;&nbsp;<img width="397" height="223" alt="image" src="https://github.com/user-attachments/assets/cd41a3bd-75f7-4d06-83c2-48846e21f752" />
-<img width="397" height="223" alt="image" src="https://github.com/user-attachments/assets/6376afd9-68b6-47c4-ad5e-58e01c0eba5c" />
+<img width="397" height="223" alt="image" src="https://github.com/user-attachments/assets/6376afd9-68b6-47c4-ad5e-58e01c0eba5c" />&nbsp;&nbsp;&nbsp;<img width="397" height="223" alt="image" src="https://github.com/user-attachments/assets/0403a7c9-f987-47b1-8603-e87d3720ead4" />
+
 
 # Controls
 
